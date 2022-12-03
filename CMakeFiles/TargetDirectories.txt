@@ -1,0 +1,2 @@
+/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir
+/home/lrx/ServerFrameWork/CMakeFiles/test.dir
