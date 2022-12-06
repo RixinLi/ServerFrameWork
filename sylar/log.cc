@@ -119,13 +119,28 @@ const char* LogLevel::ToString(LogLevel::Level level){
     };
 
 
-
-
-Logger::Logger(const std::string& name): m_name(name){
+LogEvent::LogEvent(const char* file, int32_t line, uint32_t elaspse, 
+        uint32_t thread_id, uint32_t fiber_id, uint64_t time)
+        :m_file(file)
+        ,m_line(line)
+        ,m_elapse(elaspse)
+        ,m_threadId(thread_id)
+        ,m_fiberId(fiber_id)
+        ,m_time(time){
 
 }
 
+
+Logger::Logger(const std::string& name)
+    : m_name(name)
+    , m_level(LogLevel::DEBUG){
+    m_formatter.reset(new LogFormatter("%d [%p] %f %l %m %n"));
+}
+
 void Logger::addAppender(LogAppender::ptr appender){
+    if (!appender->getFormatter()){
+        appender->setFormatter(m_formatter);
+    }
     m_appenders.push_back(appender);
 }
 
@@ -212,7 +227,7 @@ std::string LogFormatter::format(std::shared_ptr<Logger> logger,LogLevel::Level 
 void LogFormatter::init(){
     // str, format, type
     std::vector<std::tuple<std::string,std::string,int>> vec;
-    size_t last_pos = 0;
+    //size_t last_pos = 0;
     std::string nstr;
     for (size_t i=0;i<m_pattern.size();i++){
         if (m_pattern[i]!='%'){
