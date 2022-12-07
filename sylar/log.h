@@ -94,7 +94,7 @@ class LogAppender{
         LogFormatter::ptr getFormatter() const{return m_formatter;}
 
     protected:
-        LogLevel::Level m_level;
+        LogLevel::Level m_level = LogLevel::DEBUG;
         LogFormatter::ptr m_formatter;
 };
 
