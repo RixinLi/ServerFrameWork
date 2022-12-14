@@ -41,6 +41,7 @@ for (size_t i=0;i<node.size();i++){}
 
 node.IsScalar();
 ```
+配置系统的原则，约定大于配置
 
 ## 协程库封装
 
