@@ -28,7 +28,13 @@ Config --> Yaml
 
 Yaml-cpp: github 搜
 
+make lib && cd lib && cmake .. && cmake install
 
+```cpp
+YAML::Node node = YAML::Loadfile("file path");
+for (auto it = node.begin();it!=node.end();it++){}
+
+```
 
 ## 协程库封装
 
