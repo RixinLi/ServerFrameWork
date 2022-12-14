@@ -32,8 +32,14 @@ make lib && cd lib && cmake .. && cmake install
 
 ```cpp
 YAML::Node node = YAML::Loadfile("file path");
-for (auto it = node.begin();it!=node.end();it++){}
 
+node.IsMap()
+for (auto it = node.begin();it!=node.end();it++){it->first,it->second}
+
+node.IsSequence()
+for (size_t i=0;i<node.size();i++){}
+
+node.IsScalar();
 ```
 
 ## 协程库封装
