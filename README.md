@@ -22,6 +22,26 @@ Cmake
 		|
 	Appender（日志输出地方）
 
+## 配置系统
+
+Config --> Yaml
+
+Yaml-cpp: github 搜
+
+make lib && cd lib && cmake .. && cmake install
+
+```cpp
+YAML::Node node = YAML::Loadfile("file path");
+
+node.IsMap()
+for (auto it = node.begin();it!=node.end();it++){it->first,it->second}
+
+node.IsSequence()
+for (size_t i=0;i<node.size();i++){}
+
+node.IsScalar();
+```
+
 ## 协程库封装
 
 ## socket函数库
