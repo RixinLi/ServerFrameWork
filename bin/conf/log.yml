@@ -31,3 +31,19 @@ system:
          k1: 101
          k2: 220
          k3: 33
+class:
+    person:
+        name: sylar
+        age: 31
+        sex: true
+
+    map:
+      sylar1:
+          name: sylar01
+          age: 18
+          sex: false
+      sylar2:
+          name: sylar02
+          age: 40
+          sex: true
+
