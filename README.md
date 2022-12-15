@@ -51,6 +51,9 @@ template<class F, class T>
 LexicalCast;
 
 // 容器偏特化: 目前支持vector
+// list, set, map, unordered_map, unordered_set
+// map/unordered_map 支持key=std::string
+// Config::LookUp(key), key相同，类型不同的不会报错，这个需要处理一下
 ```
 
 ## 协程库封装
