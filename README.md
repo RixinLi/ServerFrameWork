@@ -43,6 +43,16 @@ node.IsScalar();
 ```
 配置系统的原则，约定大于配置
 
+```cpp
+template<class T, class FromStr, class ToStr>
+class configVar;
+
+template<class F, class T>
+LexicalCast;
+
+// 容器偏特化: 目前支持vector
+```
+
 ## 协程库封装
 
 ## socket函数库
