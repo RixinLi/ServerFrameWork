@@ -28,6 +28,6 @@ system:
          k2: 2
          k3: 3 
     str_int_umap:
-         k1: 10
-         k2: 22
+         k1: 101
+         k2: 220
          k3: 33
