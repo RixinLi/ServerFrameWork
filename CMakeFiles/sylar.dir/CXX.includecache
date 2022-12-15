@@ -369,6 +369,16 @@ boost/lexical_cast.hpp
 -
 map
 -
+vector
+-
+set
+-
+list
+-
+unordered_map
+-
+unordered_set
+-
 log.h
 /home/lrx/ServerFrameWork/sylar/log.h
 yaml-cpp/yaml.h
