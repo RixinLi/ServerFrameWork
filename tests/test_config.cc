@@ -184,7 +184,7 @@ void test_class(){
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"before: "<<g_person_vec_map->toString();
 
 
-    YAML::Node root = YAML::LoadFile("/home/lrx/ServerFrameWork/bin/conf/log.yml");
+    YAML::Node root = YAML::LoadFile("/home/lrx/ServerFrameWork/bin/conf/test.yml");
     sylar::Config::LoadFromYaml(root);
 
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "after: "<<g_person->getValue().toString()<< " - "<<g_person->toString();
