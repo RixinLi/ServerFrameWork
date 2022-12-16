@@ -62,6 +62,18 @@ LexicalCast;
 配置的事件机制
 当一个配置事件发生更改时，可以反向通知代码，回调
 
+# 日志系统整合配置系统
+```yaml
+logs:
+	- name: root
+	  level: (debug, info, warn, error, fatal)
+          formatter: '%d%T%p%T%t%T%m%n'
+	  appender:
+	    - type: (StdoutLogAppender, FileLogAppender)
+	      level: (debug, info, warn, error, fatal)
+	      file: /logs/xxx.log
+```
+
 ## 协程库封装
 
 ## socket函数库
