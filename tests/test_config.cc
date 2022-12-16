@@ -169,9 +169,15 @@ void test_class(){
         SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<< #prefix <<": size="<<m.size();\
     }
 
-    // g_person->addListener(10,[](const Person& old_value, const Person& new_value){
-    //     SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"old value="<<old_value.toString()<< " new_value="<< new_value.toString();
-    // });
+
+    g_person->addListener(10,[](const Person& old_value, const Person& new_value){
+        SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"old value="<<old_value.toString()<< " new_value="<< new_value.toString();
+    });
+
+    g_person_map->addListener(11,[](const std::map<std::string,Person>& old_value,const std::map<std::string,Person>& new_value){
+        for (auto& i: old_value) SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"old: "<<i.first<<" - "<<i.second.toString();
+        for (auto& i: new_value) SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"new: "<<i.first<<" - "<<i.second.toString();
+    });
     
     XX_PM(g_person_map,"class.map before");
 
@@ -183,9 +189,6 @@ void test_class(){
 
     SYLAR_LOG_INFO(SYLAR_LOG_ROOT()) << "after: "<<g_person->getValue().toString()<< " - "<<g_person->toString();
 
-    g_person->addListener(10,[](const Person& old_value, const Person& new_value){
-        SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"old value="<<old_value.toString()<< " new_value="<< new_value.toString();
-    });
 
     XX_PM(g_person_map,"class.map after");
 
