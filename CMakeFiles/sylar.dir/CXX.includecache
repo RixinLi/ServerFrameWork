@@ -383,6 +383,8 @@ log.h
 /home/lrx/ServerFrameWork/sylar/log.h
 yaml-cpp/yaml.h
 -
+functional
+-
 
 /home/lrx/ServerFrameWork/sylar/log.cc
 log.h
