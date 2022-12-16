@@ -74,6 +74,11 @@ logs:
 	      file: /logs/xxx.log
 ```
 
+```cpp
+	sylar::Logger g_logger =  sylar::LoggerMgr::GetInstance()->getLogger(name)
+	SYLAR_LOG_INFO(g_logger)<<"xxx log";
+```
+
 ## 协程库封装
 
 ## socket函数库
