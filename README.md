@@ -79,6 +79,12 @@ logs:
 	SYLAR_LOG_INFO(g_logger)<<"xxx log";
 ```
 
+```cpp
+static Logger::ptr g_log = SYLAR_LOG_NAME("system"); // m_root
+// m_root , m_system -> m_root 
+当logger的appenders为空，使用root写logger
+```
+
 ## 协程库封装
 
 ## socket函数库
