@@ -88,6 +88,9 @@ static Logger::ptr g_log = SYLAR_LOG_NAME("system"); // m_root
 ```cpp
 
 ```
+遗留问题：
+1. appender定义的formatter读取yaml的时候，没有被初始化
+2. 去掉额外的调试日志
 
 ## 协程库封装
 
