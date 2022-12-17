@@ -85,6 +85,10 @@ static Logger::ptr g_log = SYLAR_LOG_NAME("system"); // m_root
 当logger的appenders为空，使用root写logger
 ```
 
+```cpp
+
+```
+
 ## 协程库封装
 
 ## socket函数库
