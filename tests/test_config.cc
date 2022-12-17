@@ -199,6 +199,9 @@ void test_class(){
 
 void test_log(){
 
+    static sylar::Logger::ptr system_log = SYLAR_LOG_NAME("system");
+    SYLAR_LOG_INFO(system_log)<<"hello system"<<std::endl;
+
     std::cout<<sylar::LoggerMgr::GetInstance()->toYamlString()<<std::endl;
 
     YAML::Node root = YAML::LoadFile("/home/lrx/ServerFrameWork/bin/conf/log.yml");
@@ -207,6 +210,7 @@ void test_log(){
     std::cout<< "====================================="<<std::endl;
     std::cout<<sylar::LoggerMgr::GetInstance()->toYamlString()<<std::endl;
 
+    SYLAR_LOG_INFO(system_log)<<"hello system"<<std::endl;
 
 }
 
