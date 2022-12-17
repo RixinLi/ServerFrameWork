@@ -44,7 +44,7 @@
 
 #define SYLAR_LOG_ROOT() sylar::LoggerMgr::GetInstance()->getRoot()
 
-#define SYLAR_LOG_NAME(name) sylar::LoggerMgr:;GetInstance()->getLogger(name)
+#define SYLAR_LOG_NAME(name) sylar::LoggerMgr::GetInstance()->getLogger(name)
 
 namespace sylar{
 
@@ -64,6 +64,7 @@ class LogLevel{
             };
 
         static const char* ToString(LogLevel::Level level); 
+        static LogLevel::Level FromString(const std::string& str);
 };
 
 // 日志事件
@@ -136,9 +137,12 @@ class LogFormatter{
 
         void init();
 
+        bool isError() const {return m_error;}
+
     private:
         std::string m_pattern;
         std::vector<FormatItem::ptr> m_items;
+        bool m_error = false;
 };
 
 
@@ -180,12 +184,17 @@ friend class LoggerManager;
         
         void addAppender(LogAppender::ptr appender);
         void delAppender(LogAppender::ptr appender);
+        void clearAppenders();
 
         LogLevel::Level getLevel() const {return m_level;}
         void setLevel(LogLevel::Level val){m_level = val;}
 
         const std::string& getName() const{return m_name;}
 
+        void setFormatter(LogFormatter::ptr val);
+        void setFormatter(const std::string& val);
+
+        LogFormatter::ptr getFormatter() const {return m_formatter;}
 
     private:
         std::string m_name;      //日志名称
