@@ -1,6 +1,7 @@
 #include "../sylar/config.h"
 #include "../sylar/log.h"
 #include <yaml-cpp/yaml.h>
+#include <iostream>
 
 sylar::ConfigVar<int>::ptr g_int_value_config = sylar::Config::Lookup("system.port",(int)8080,"system port");
 
@@ -196,6 +197,19 @@ void test_class(){
 
 }
 
+void test_log(){
+
+    std::cout<<sylar::LoggerMgr::GetInstance()->toYamlString()<<std::endl;
+
+    YAML::Node root = YAML::LoadFile("/home/lrx/ServerFrameWork/bin/conf/log.yml");
+
+    sylar::Config::LoadFromYaml(root);
+    std::cout<< "====================================="<<std::endl;
+    std::cout<<sylar::LoggerMgr::GetInstance()->toYamlString()<<std::endl;
+
+
+}
+
 
 int main(int argc, char** argv){
 
@@ -205,6 +219,9 @@ int main(int argc, char** argv){
     // test_yaml();
 
     // test_config();
-    test_class();
+    //test_class();
+
+
+    test_log();
     return 0;
 }
