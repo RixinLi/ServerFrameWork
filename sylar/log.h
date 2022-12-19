@@ -12,20 +12,23 @@
 #include <map>
 #include "singleton.h"
 #include "util.h"
+#include <string.h>
+
+#define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
 // 宏定义
 /*普通日志级别*/
 #define SYLAR_LOG_LEVEL(logger,level) \
     if (logger->getLevel() <= level) \
     sylar::LogEventWrap(sylar::LogEvent::ptr( new sylar::LogEvent( logger, level, \
-    __FILE__,__LINE__,0,sylar::GetThreadID(),\
+    __FILENAME__,__LINE__,0,sylar::GetThreadID(),\
     sylar::GetFiberId(),time(0) ) ) ).getSS()
 
 /*带格式日志级别*/
 #define SYLAR_LOG_FMT_LEVEL(logger,level,fmt,...) \
     if (logger->getLevel() <= level) \
     sylar::LogEventWrap(sylar::LogEvent::ptr( new sylar::LogEvent( logger, level, \
-    __FILE__,__LINE__,0,sylar::GetThreadID(),\
+    __FILENAME__,__LINE__,0,sylar::GetThreadID(),\
     sylar::GetFiberId(),time(0) ) ) ).getEvent()->format(fmt,__VA_ARGS__)
 
 // 普通日志级别
@@ -151,13 +154,14 @@ class LogFormatter{
 
 // 日志输出地址
 class LogAppender{
+friend class Logger;
     public:
         typedef std::shared_ptr<LogAppender> ptr;
         //virtual ~LogAppender();
 
         virtual void log(std::shared_ptr<Logger> logger,LogLevel::Level level, LogEvent::ptr event) = 0;
 
-        void setFormatter(LogFormatter::ptr val){m_formatter = val;}
+        void setFormatter(LogFormatter::ptr val);
         LogFormatter::ptr getFormatter() const{return m_formatter;}
 
         LogLevel::Level getLevel() const{return m_level;}
@@ -167,6 +171,7 @@ class LogAppender{
 
     protected:
         LogLevel::Level m_level = LogLevel::DEBUG;
+        bool m_hasFormatter = false;
         LogFormatter::ptr m_formatter;
 };
 
