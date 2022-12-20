@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lrx/ServerFrameWork/sylar/config.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/config.cc.o"
   "/home/lrx/ServerFrameWork/sylar/log.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/log.cc.o"
+  "/home/lrx/ServerFrameWork/sylar/thread.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/thread.cc.o"
   "/home/lrx/ServerFrameWork/sylar/util.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/util.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

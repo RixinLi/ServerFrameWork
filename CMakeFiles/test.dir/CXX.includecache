@@ -33,6 +33,8 @@ string.h
 -
 
 /home/lrx/ServerFrameWork/sylar/singleton.h
+memory
+-
 
 /home/lrx/ServerFrameWork/sylar/util.h
 pthread.h

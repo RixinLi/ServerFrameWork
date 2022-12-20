@@ -429,6 +429,28 @@ string.h
 -
 
 /home/lrx/ServerFrameWork/sylar/singleton.h
+memory
+-
+
+/home/lrx/ServerFrameWork/sylar/thread.cc
+thread.h
+/home/lrx/ServerFrameWork/sylar/thread.h
+log.h
+/home/lrx/ServerFrameWork/sylar/log.h
+util.h
+/home/lrx/ServerFrameWork/sylar/util.h
+
+/home/lrx/ServerFrameWork/sylar/thread.h
+thread
+-
+functional
+-
+memory
+-
+pthread.h
+-
+string
+-
 
 /home/lrx/ServerFrameWork/sylar/util.cc
 util.h
