@@ -106,6 +106,8 @@ pthread pthread_create
 
 读写锁: sylar::WRMutex::ReadLock sylar::WRMutex::WriteLock
 
+和log整合
+
 ## 协程库封装
 
 ## socket函数库
