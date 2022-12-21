@@ -457,6 +457,8 @@ stdint.h
 -
 semaphore.h
 -
+atomic
+-
 
 /home/lrx/ServerFrameWork/sylar/util.cc
 util.h
