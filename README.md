@@ -97,6 +97,14 @@ static Logger::ptr g_log = SYLAR_LOG_NAME("system"); // m_root
 ## 线程库
 
 Thread, Mutex, 
+Pthread
+
+pthread pthread_create
+
+信号量：semaphore
+互斥量: mutex
+
+读写锁: sylar::WRMutex::ReadLock sylar::WRMutex::WriteLock
 
 ## 协程库封装
 
