@@ -37,6 +37,7 @@ CMakeFiles/sylar.dir/sylar/config.cc.o
  /home/lrx/ServerFrameWork/sylar/config.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
+ /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/log.cc.o
  /apps/yaml-cpp/include/yaml-cpp/binary.h
@@ -74,6 +75,7 @@ CMakeFiles/sylar.dir/sylar/log.cc.o
  /home/lrx/ServerFrameWork/sylar/log.cc
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
+ /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/thread.cc.o
  /home/lrx/ServerFrameWork/sylar/log.h

@@ -36,5 +36,6 @@ CMakeFiles/test_config.dir/tests/test_config.cc.o
  /home/lrx/ServerFrameWork/sylar/config.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
+ /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
  /home/lrx/ServerFrameWork/tests/test_config.cc

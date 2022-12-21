@@ -13,6 +13,7 @@
 #include "singleton.h"
 #include "util.h"
 #include <string.h>
+#include "thread.h"
 
 #define __FILENAME__ (strrchr(__FILE__, '/') ? strrchr(__FILE__, '/') + 1 : __FILE__)
 
@@ -157,12 +158,14 @@ class LogAppender{
 friend class Logger;
     public:
         typedef std::shared_ptr<LogAppender> ptr;
-        //virtual ~LogAppender();
+        typedef Mutex MutexType;
+
+        virtual ~LogAppender(){};
 
         virtual void log(std::shared_ptr<Logger> logger,LogLevel::Level level, LogEvent::ptr event) = 0;
 
         void setFormatter(LogFormatter::ptr val);
-        LogFormatter::ptr getFormatter() const{return m_formatter;}
+        LogFormatter::ptr getFormatter();
 
         LogLevel::Level getLevel() const{return m_level;}
         void setLevel(LogLevel::Level val) {m_level = val;}
@@ -172,6 +175,7 @@ friend class Logger;
     protected:
         LogLevel::Level m_level = LogLevel::DEBUG;
         bool m_hasFormatter = false;
+        MutexType m_mutex;
         LogFormatter::ptr m_formatter;
 };
 
@@ -181,6 +185,7 @@ class Logger: public std::enable_shared_from_this<Logger> {
 friend class LoggerManager;
     public:
         typedef std::shared_ptr<Logger> ptr;
+        typedef Mutex MutexType;
 
         Logger(const std::string& name = "root");
         void log(LogLevel::Level level, LogEvent::ptr LogEvent);
@@ -210,9 +215,11 @@ friend class LoggerManager;
     private:
         std::string m_name;      //日志名称
         LogLevel::Level m_level; //日志级别
+        MutexType m_mutex;  // 互斥锁
         std::list<LogAppender::ptr> m_appenders;        // Appender集合
         LogFormatter::ptr m_formatter;
         Logger::ptr m_root; // root logger
+
 };
 
 
@@ -246,6 +253,7 @@ class FileLogAppender: public LogAppender{
 class LoggerManager{
 
 public:
+    typedef Mutex MutexType;
     LoggerManager();
     Logger::ptr getLogger(const std::string& name);
     void init();
@@ -254,6 +262,7 @@ public:
     std::string toYamlString();
 
 private:
+    MutexType m_mutex;
     std::map<std::string, Logger::ptr> m_loggers;
     Logger::ptr m_root;
 };

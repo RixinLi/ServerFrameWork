@@ -427,6 +427,8 @@ util.h
 /home/lrx/ServerFrameWork/sylar/util.h
 string.h
 -
+thread.h
+/home/lrx/ServerFrameWork/sylar/thread.h
 
 /home/lrx/ServerFrameWork/sylar/singleton.h
 memory

@@ -36,6 +36,7 @@ CMakeFiles/sylar.dir/sylar/config.cc.o: sylar/config.cc
 CMakeFiles/sylar.dir/sylar/config.cc.o: sylar/config.h
 CMakeFiles/sylar.dir/sylar/config.cc.o: sylar/log.h
 CMakeFiles/sylar.dir/sylar/config.cc.o: sylar/singleton.h
+CMakeFiles/sylar.dir/sylar/config.cc.o: sylar/thread.h
 CMakeFiles/sylar.dir/sylar/config.cc.o: sylar/util.h
 
 CMakeFiles/sylar.dir/sylar/log.cc.o: /apps/yaml-cpp/include/yaml-cpp/binary.h
@@ -73,6 +74,7 @@ CMakeFiles/sylar.dir/sylar/log.cc.o: sylar/config.h
 CMakeFiles/sylar.dir/sylar/log.cc.o: sylar/log.cc
 CMakeFiles/sylar.dir/sylar/log.cc.o: sylar/log.h
 CMakeFiles/sylar.dir/sylar/log.cc.o: sylar/singleton.h
+CMakeFiles/sylar.dir/sylar/log.cc.o: sylar/thread.h
 CMakeFiles/sylar.dir/sylar/log.cc.o: sylar/util.h
 
 CMakeFiles/sylar.dir/sylar/thread.cc.o: sylar/log.h
