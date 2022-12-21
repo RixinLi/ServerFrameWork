@@ -435,6 +435,10 @@ pthread.h
 -
 string
 -
+stdint.h
+-
+semaphore.h
+-
 
 /home/lrx/ServerFrameWork/sylar/util.h
 pthread.h
