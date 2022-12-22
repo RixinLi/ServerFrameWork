@@ -171,11 +171,11 @@ void test_class(){
     }
 
 
-    g_person->addListener(10,[](const Person& old_value, const Person& new_value){
+    g_person->addListener([](const Person& old_value, const Person& new_value){
         SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"old value="<<old_value.toString()<< " new_value="<< new_value.toString();
     });
 
-    g_person_map->addListener(11,[](const std::map<std::string,Person>& old_value,const std::map<std::string,Person>& new_value){
+    g_person_map->addListener([](const std::map<std::string,Person>& old_value,const std::map<std::string,Person>& new_value){
         for (auto& i: old_value) SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"old: "<<i.first<<" - "<<i.second.toString();
         for (auto& i: new_value) SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"new: "<<i.first<<" - "<<i.second.toString();
     });
@@ -230,5 +230,12 @@ int main(int argc, char** argv){
 
 
     test_log();
+
+    sylar::Config::Visit([](sylar::ConfigVarBase::ptr var){
+        SYLAR_LOG_INFO(SYLAR_LOG_ROOT())<<"name="<<var->getName()
+                                <<" description="<<var->getDescription()
+                                <<" typename="<<var->getTypeName()
+                                <<" value="<<var->toString();
+    });
     return 0;
 }

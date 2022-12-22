@@ -270,7 +270,5 @@ private:
 
 typedef sylar::Singleton<LoggerManager> LoggerMgr;
 
-
-
 }
 #endif

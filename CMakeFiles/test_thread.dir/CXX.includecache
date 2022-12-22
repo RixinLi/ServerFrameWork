@@ -375,12 +375,14 @@ unordered_map
 -
 unordered_set
 -
-log.h
-/home/lrx/ServerFrameWork/sylar/log.h
 yaml-cpp/yaml.h
 -
 functional
 -
+log.h
+/home/lrx/ServerFrameWork/sylar/log.h
+thread.h
+/home/lrx/ServerFrameWork/sylar/thread.h
 
 /home/lrx/ServerFrameWork/sylar/log.h
 string
