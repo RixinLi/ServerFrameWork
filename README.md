@@ -113,6 +113,8 @@ SpinLock 替换 Mutex
 
 写文件周期性reopen，防止文件被删除了，未被感知
 
+和config整合
+
 ## 协程库封装
 
 ## socket函数库
