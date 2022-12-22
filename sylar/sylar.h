@@ -6,5 +6,6 @@
 #include "log.h"
 #include "config.h"
 #include "singleton.h"
+#include "macro.h"
 
 #endif

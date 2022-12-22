@@ -445,6 +445,10 @@ stdio.h
 -
 unistd.h
 -
+vector
+-
+string
+-
 
 /home/lrx/ServerFrameWork/tests/test_config.cc
 ../sylar/config.h

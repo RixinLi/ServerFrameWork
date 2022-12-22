@@ -41,5 +41,9 @@ add_executable(test_thread tests/test_thread.cc)
 add_dependencies(test_thread sylar)
 target_link_libraries(test_thread sylar yaml-cpp pthread)
 
+add_executable(test_util tests/test_util.cc)
+add_dependencies(test_util sylar)
+target_link_libraries(test_util sylar yaml-cpp pthread)
+
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

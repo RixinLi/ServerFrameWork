@@ -465,6 +465,10 @@ atomic
 /home/lrx/ServerFrameWork/sylar/util.cc
 util.h
 /home/lrx/ServerFrameWork/sylar/util.h
+execinfo.h
+-
+log.h
+/home/lrx/ServerFrameWork/sylar/log.h
 
 /home/lrx/ServerFrameWork/sylar/util.h
 pthread.h
@@ -476,5 +480,9 @@ sys/syscall.h
 stdio.h
 -
 unistd.h
+-
+vector
+-
+string
 -
 

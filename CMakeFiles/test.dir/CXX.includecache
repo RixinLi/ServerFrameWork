@@ -67,6 +67,10 @@ stdio.h
 -
 unistd.h
 -
+vector
+-
+string
+-
 
 /home/lrx/ServerFrameWork/tests/test.cc
 iostream

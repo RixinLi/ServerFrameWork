@@ -412,6 +412,14 @@ string.h
 thread.h
 /home/lrx/ServerFrameWork/sylar/thread.h
 
+/home/lrx/ServerFrameWork/sylar/macro.h
+string.h
+-
+assert.h
+-
+util.h
+/home/lrx/ServerFrameWork/sylar/util.h
+
 /home/lrx/ServerFrameWork/sylar/singleton.h
 memory
 -
@@ -427,6 +435,8 @@ config.h
 /home/lrx/ServerFrameWork/sylar/config.h
 singleton.h
 /home/lrx/ServerFrameWork/sylar/singleton.h
+macro.h
+/home/lrx/ServerFrameWork/sylar/macro.h
 
 /home/lrx/ServerFrameWork/sylar/thread.h
 thread
@@ -456,6 +466,10 @@ sys/syscall.h
 stdio.h
 -
 unistd.h
+-
+vector
+-
+string
 -
 
 /home/lrx/ServerFrameWork/tests/test_thread.cc
