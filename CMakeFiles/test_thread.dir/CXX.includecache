@@ -384,6 +384,16 @@ log.h
 thread.h
 /home/lrx/ServerFrameWork/sylar/thread.h
 
+/home/lrx/ServerFrameWork/sylar/fiber.h
+memory
+-
+thread.h
+/home/lrx/ServerFrameWork/sylar/thread.h
+ucontext.h
+-
+functional
+-
+
 /home/lrx/ServerFrameWork/sylar/log.h
 string
 -
@@ -437,6 +447,8 @@ singleton.h
 /home/lrx/ServerFrameWork/sylar/singleton.h
 macro.h
 /home/lrx/ServerFrameWork/sylar/macro.h
+fiber.h
+/home/lrx/ServerFrameWork/sylar/fiber.h
 
 /home/lrx/ServerFrameWork/sylar/thread.h
 thread

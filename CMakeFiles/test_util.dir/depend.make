@@ -33,6 +33,7 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o: /apps/yaml-cpp/include/yaml-cpp/s
 CMakeFiles/test_util.dir/tests/test_util.cc.o: /apps/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: /apps/yaml-cpp/include/yaml-cpp/yaml.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: sylar/config.h
+CMakeFiles/test_util.dir/tests/test_util.cc.o: sylar/fiber.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: sylar/log.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: sylar/macro.h
 CMakeFiles/test_util.dir/tests/test_util.cc.o: sylar/singleton.h

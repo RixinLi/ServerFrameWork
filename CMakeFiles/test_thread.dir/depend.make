@@ -33,6 +33,7 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o: /apps/yaml-cpp/include/yaml-c
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: /apps/yaml-cpp/include/yaml-cpp/traits.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: /apps/yaml-cpp/include/yaml-cpp/yaml.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: sylar/config.h
+CMakeFiles/test_thread.dir/tests/test_thread.cc.o: sylar/fiber.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: sylar/log.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: sylar/macro.h
 CMakeFiles/test_thread.dir/tests/test_thread.cc.o: sylar/singleton.h

@@ -34,6 +34,7 @@ CMakeFiles/test_util.dir/tests/test_util.cc.o
  /apps/yaml-cpp/include/yaml-cpp/traits.h
  /apps/yaml-cpp/include/yaml-cpp/yaml.h
  /home/lrx/ServerFrameWork/sylar/config.h
+ /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/macro.h
  /home/lrx/ServerFrameWork/sylar/singleton.h

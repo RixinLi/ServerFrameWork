@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/lrx/ServerFrameWork/sylar/config.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/config.cc.o"
+  "/home/lrx/ServerFrameWork/sylar/fiber.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/fiber.cc.o"
   "/home/lrx/ServerFrameWork/sylar/log.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/log.cc.o"
   "/home/lrx/ServerFrameWork/sylar/thread.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/thread.cc.o"
   "/home/lrx/ServerFrameWork/sylar/util.cc" "/home/lrx/ServerFrameWork/CMakeFiles/sylar.dir/sylar/util.cc.o"
