@@ -130,6 +130,16 @@ Thread->main_fiber -----> sub_fiber // 使用swapin 切换子协程
 	    v
 ```
 
+协程调度模块schedular
+```
+	1->N	1->N	
+schedular-->thread--> fiber
+1. 线程池，分配一组线程
+2. 协程调度器，将协程指定到相应的线程执行
+3. 
+
+N:M
+
 ```
 
 ## socket函数库
