@@ -53,6 +53,10 @@ public:
 
 protected:
     virtual void tickle();
+    void run();
+    virtual bool stopping();
+
+    void setThis();
 
 private:
     template<class FiberOrCb>
@@ -99,6 +103,15 @@ private:
     std::vector<Thread::ptr> m_threads;
     std::list<FiberAndThread> m_fibers;
     std::string m_name;
+
+protected:
+    std::vector<int> m_threadIds;
+    size_t m_threadCount = 0;
+    size_t m_activeThreadCount = 0;
+    size_t m_idleThreaedCount = 0;
+    bool m_stopping = true;
+    bool m_autoStop = false;
+    int m_rootThread = 0;
 };
 
 }
