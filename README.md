@@ -122,11 +122,14 @@ ucontext_t
 macro
 
 ```
-Thread->main_fiber -----> sub_fiber
+Fiber::GetThis() // 创建主协程
+Thread->main_fiber -----> sub_fiber // 使用swapin 切换子协程
 	    ^
 	    |
 	    |
 	    v
+```
+
 ```
 
 ## socket函数库
