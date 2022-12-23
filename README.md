@@ -140,6 +140,10 @@ schedular-->thread--> fiber
 
 N:M
 
+m_threads
+<function<void()>, fiber, threadid> m_fibers
+
+schedule(func/fiber)
 ```
 
 ## socket函数库
