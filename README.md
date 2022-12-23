@@ -144,6 +144,10 @@ m_threads
 <function<void()>, fiber, threadid> m_fibers
 
 schedule(func/fiber)
+
+start()
+stop()
+run()
 ```
 
 ## socket函数库
