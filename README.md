@@ -121,6 +121,14 @@ SpinLock 替换 Mutex
 ucontext_t
 macro
 
+```
+Thread->main_fiber -----> sub_fiber
+	    ^
+	    |
+	    |
+	    v
+```
+
 ## socket函数库
 
 ## http协议开发
