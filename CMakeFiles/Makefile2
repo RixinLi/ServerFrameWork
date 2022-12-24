@@ -63,6 +63,43 @@ CMAKE_SOURCE_DIR = /home/lrx/ServerFrameWork
 CMAKE_BINARY_DIR = /home/lrx/ServerFrameWork
 
 #=============================================================================
+# Target rules for target CMakeFiles/test_scheduler.dir
+
+# All Build rule for target.
+CMakeFiles/test_scheduler.dir/all: CMakeFiles/sylar.dir/all
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/depend
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lrx/ServerFrameWork/CMakeFiles --progress-num=14,15 "Built target test_scheduler"
+.PHONY : CMakeFiles/test_scheduler.dir/all
+
+# Include target in all.
+all: CMakeFiles/test_scheduler.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/test_scheduler.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lrx/ServerFrameWork/CMakeFiles 9
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/test_scheduler.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lrx/ServerFrameWork/CMakeFiles 0
+.PHONY : CMakeFiles/test_scheduler.dir/rule
+
+# Convenience name for target.
+test_scheduler: CMakeFiles/test_scheduler.dir/rule
+
+.PHONY : test_scheduler
+
+# clean rule for target.
+CMakeFiles/test_scheduler.dir/clean:
+	$(MAKE) -f CMakeFiles/test_scheduler.dir/build.make CMakeFiles/test_scheduler.dir/clean
+.PHONY : CMakeFiles/test_scheduler.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/test_scheduler.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/test_fiber.dir
 
 # All Build rule for target.
@@ -106,7 +143,7 @@ clean: CMakeFiles/test_fiber.dir/clean
 CMakeFiles/test_util.dir/all: CMakeFiles/sylar.dir/all
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/depend
 	$(MAKE) -f CMakeFiles/test_util.dir/build.make CMakeFiles/test_util.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lrx/ServerFrameWork/CMakeFiles --progress-num=16,17 "Built target test_util"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lrx/ServerFrameWork/CMakeFiles --progress-num=18,19 "Built target test_util"
 .PHONY : CMakeFiles/test_util.dir/all
 
 # Include target in all.
@@ -180,7 +217,7 @@ clean: CMakeFiles/test_config.dir/clean
 CMakeFiles/test_thread.dir/all: CMakeFiles/sylar.dir/all
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/depend
 	$(MAKE) -f CMakeFiles/test_thread.dir/build.make CMakeFiles/test_thread.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lrx/ServerFrameWork/CMakeFiles --progress-num=14,15 "Built target test_thread"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/lrx/ServerFrameWork/CMakeFiles --progress-num=16,17 "Built target test_thread"
 .PHONY : CMakeFiles/test_thread.dir/all
 
 # Include target in all.

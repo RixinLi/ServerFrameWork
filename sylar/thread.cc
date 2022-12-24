@@ -88,7 +88,7 @@ void* Thread::run(void* arg){
     Thread* thread = (Thread*)arg;
     t_thread = thread;
     t_thread_name = thread->m_name;
-    thread->m_id = sylar::GetThreadID();
+    thread->m_id = sylar::GetThreadId();
     pthread_setname_np(pthread_self(),thread->m_name.substr(0,15).c_str());
 
     std::function<void()> cb;

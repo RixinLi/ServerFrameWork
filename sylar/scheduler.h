@@ -6,6 +6,7 @@
 #include <list>
 #include "fiber.h"
 #include "thread.h"
+#include "util.h"
 
 namespace sylar{
 

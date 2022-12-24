@@ -397,6 +397,8 @@ macro.h
 /home/lrx/ServerFrameWork/sylar/macro.h
 log.h
 /home/lrx/ServerFrameWork/sylar/log.h
+scheduler.h
+/home/lrx/ServerFrameWork/sylar/scheduler.h
 atomic
 -
 
@@ -465,6 +467,8 @@ util.h
 /home/lrx/ServerFrameWork/sylar/scheduler.cc
 scheduler.h
 /home/lrx/ServerFrameWork/sylar/scheduler.h
+util.h
+/home/lrx/ServerFrameWork/sylar/util.h
 log.h
 /home/lrx/ServerFrameWork/sylar/log.h
 macro.h
@@ -481,6 +485,8 @@ fiber.h
 /home/lrx/ServerFrameWork/sylar/fiber.h
 thread.h
 /home/lrx/ServerFrameWork/sylar/thread.h
+util.h
+/home/lrx/ServerFrameWork/sylar/util.h
 
 /home/lrx/ServerFrameWork/sylar/singleton.h
 memory

@@ -15,7 +15,7 @@ pid_t GetThreadId(); // 获取线程ID
 uint32_t GetFiberId(); // 获取协程ID
 
 void Backtrace(std::vector<std::string>& bt, int size, int skip = 1);
-std::string BacktraceToString(int size, int skip = 2, const std::string& prefix = "");
+std::string BacktraceToString(int size = 64, int skip = 2, const std::string& prefix = "");
 
 }
 

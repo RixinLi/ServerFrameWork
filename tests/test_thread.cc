@@ -11,7 +11,7 @@ void fun1(){
 
     SYLAR_LOG_INFO(g_logger)<<"name: "<<sylar::Thread::GetName()
                             <<" this.name: "<<sylar::Thread::GetThis()->getName()
-                            <<" id: "<<sylar::GetThreadID()
+                            <<" id: "<<sylar::GetThreadId()
                             <<" this.id: "<<sylar::Thread::GetThis()->getId();
     for (int i=0;i<1000000;i++){
         sylar::Mutex::Lock lock(s_mutex);

@@ -37,6 +37,7 @@ CMakeFiles/test_thread.dir/tests/test_thread.cc.o
  /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/macro.h
+ /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/sylar.h
  /home/lrx/ServerFrameWork/sylar/thread.h

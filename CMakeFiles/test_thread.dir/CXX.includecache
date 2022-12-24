@@ -430,6 +430,20 @@ assert.h
 util.h
 /home/lrx/ServerFrameWork/sylar/util.h
 
+/home/lrx/ServerFrameWork/sylar/scheduler.h
+memory
+-
+vector
+-
+list
+-
+fiber.h
+/home/lrx/ServerFrameWork/sylar/fiber.h
+thread.h
+/home/lrx/ServerFrameWork/sylar/thread.h
+util.h
+/home/lrx/ServerFrameWork/sylar/util.h
+
 /home/lrx/ServerFrameWork/sylar/singleton.h
 memory
 -
@@ -449,6 +463,8 @@ macro.h
 /home/lrx/ServerFrameWork/sylar/macro.h
 fiber.h
 /home/lrx/ServerFrameWork/sylar/fiber.h
+scheduler.h
+/home/lrx/ServerFrameWork/sylar/scheduler.h
 
 /home/lrx/ServerFrameWork/sylar/thread.h
 thread

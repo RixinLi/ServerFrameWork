@@ -75,6 +75,7 @@ CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/fiber.cc
 CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/fiber.h
 CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/log.h
 CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/macro.h
+CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/scheduler.h
 CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/singleton.h
 CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/thread.h
 CMakeFiles/sylar.dir/sylar/fiber.cc.o: sylar/util.h
