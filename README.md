@@ -148,6 +148,12 @@ schedule(func/fiber)
 start()
 stop()
 run()
+
+1. 设置当前线程的scheduler
+2. 设置当前线程的run，fiber
+3. 协程调度循环while(true)
+	1.协程消息队列里面是否有队列
+	2.无任务执行idle方法
 ```
 
 ## socket函数库
