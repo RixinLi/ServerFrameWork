@@ -106,7 +106,7 @@ namespace sylar{
 
     void Scheduler::run(){
         setThis();
-        if (sylar::GetFiberId() != m_rootThread){
+        if (sylar::GetFiberId() != (uint32_t)m_rootThread){
             t_fiber = Fiber::GetThis().get();
         }
 
@@ -175,7 +175,7 @@ namespace sylar{
                 }else if (cb_fiber->getState() == Fiber::EXCEPT || cb_fiber->getState() == Fiber::TERM){
                     cb_fiber->reset(nullptr);
                 }else{ //if (cb_fiber->getState() != Fiber::TERM){
-                    cb_fiber->m_state == Fiber::HOLD;
+                    cb_fiber->m_state = Fiber::HOLD;
                     cb_fiber.reset();
                 }
             }
