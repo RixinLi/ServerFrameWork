@@ -39,6 +39,8 @@ public:
 
     uint64_t getId() const{return m_id;}
 
+    State getState() const{return m_state;}
+
 public:
     // 返回当前协程
     static Fiber::ptr GetThis();

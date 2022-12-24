@@ -117,6 +117,15 @@ CMakeFiles/sylar.dir/sylar/log.cc.o
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
+CMakeFiles/sylar.dir/sylar/scheduler.cc.o
+ /home/lrx/ServerFrameWork/sylar/fiber.h
+ /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/macro.h
+ /home/lrx/ServerFrameWork/sylar/scheduler.cc
+ /home/lrx/ServerFrameWork/sylar/scheduler.h
+ /home/lrx/ServerFrameWork/sylar/singleton.h
+ /home/lrx/ServerFrameWork/sylar/thread.h
+ /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/thread.cc.o
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/singleton.h

@@ -2,6 +2,8 @@
 #define __SYLAR_SCHEDULER_H__
 
 #include <memory>
+#include <vector>
+#include <list>
 #include "fiber.h"
 #include "thread.h"
 
@@ -55,6 +57,7 @@ protected:
     virtual void tickle();
     void run();
     virtual bool stopping();
+    virtual void idle(); 
 
     void setThis();
 
@@ -79,7 +82,7 @@ private:
         fiber(f),thread(thr)
         {}
 
-        FiberAndThread(Fiber::ptr* f, int thr,)
+        FiberAndThread(Fiber::ptr* f, int thr)
         : thread(thr){
             fiber.swap(*f);
         }
@@ -102,13 +105,14 @@ private:
     MutexType m_mutex;
     std::vector<Thread::ptr> m_threads;
     std::list<FiberAndThread> m_fibers;
+    Fiber::ptr m_rootFiber;
     std::string m_name;
 
 protected:
     std::vector<int> m_threadIds;
     size_t m_threadCount = 0;
-    size_t m_activeThreadCount = 0;
-    size_t m_idleThreaedCount = 0;
+    std::atomic<size_t> m_activeThreadCount {0};
+    std::atomic<size_t> m_idleThreaedCount {0};
     bool m_stopping = true;
     bool m_autoStop = false;
     int m_rootThread = 0;

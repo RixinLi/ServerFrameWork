@@ -11,7 +11,7 @@
 
 namespace sylar{
 
-pid_t GetThreadID(); // 获取线程ID
+pid_t GetThreadId(); // 获取线程ID
 uint32_t GetFiberId(); // 获取协程ID
 
 void Backtrace(std::vector<std::string>& bt, int size, int skip = 1);

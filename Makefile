@@ -272,6 +272,33 @@ sylar/log.cc.s:
 	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/log.cc.s
 .PHONY : sylar/log.cc.s
 
+sylar/scheduler.o: sylar/scheduler.cc.o
+
+.PHONY : sylar/scheduler.o
+
+# target to build an object file
+sylar/scheduler.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/scheduler.cc.o
+.PHONY : sylar/scheduler.cc.o
+
+sylar/scheduler.i: sylar/scheduler.cc.i
+
+.PHONY : sylar/scheduler.i
+
+# target to preprocess a source file
+sylar/scheduler.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/scheduler.cc.i
+.PHONY : sylar/scheduler.cc.i
+
+sylar/scheduler.s: sylar/scheduler.cc.s
+
+.PHONY : sylar/scheduler.s
+
+# target to generate assembly for a file
+sylar/scheduler.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/scheduler.cc.s
+.PHONY : sylar/scheduler.cc.s
+
 sylar/thread.o: sylar/thread.cc.o
 
 .PHONY : sylar/thread.o
@@ -484,6 +511,9 @@ help:
 	@echo "... sylar/log.o"
 	@echo "... sylar/log.i"
 	@echo "... sylar/log.s"
+	@echo "... sylar/scheduler.o"
+	@echo "... sylar/scheduler.i"
+	@echo "... sylar/scheduler.s"
 	@echo "... sylar/thread.o"
 	@echo "... sylar/thread.i"
 	@echo "... sylar/thread.s"

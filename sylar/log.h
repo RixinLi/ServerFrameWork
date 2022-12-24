@@ -22,14 +22,14 @@
 #define SYLAR_LOG_LEVEL(logger,level) \
     if (logger->getLevel() <= level) \
     sylar::LogEventWrap(sylar::LogEvent::ptr( new sylar::LogEvent( logger, level, \
-    __FILENAME__,__LINE__,0,sylar::GetThreadID(),\
+    __FILENAME__,__LINE__,0,sylar::GetThreadId(),\
     sylar::GetFiberId(),time(0), sylar::Thread::GetName() ) ) ).getSS()
 
 /*带格式日志级别*/
 #define SYLAR_LOG_FMT_LEVEL(logger,level,fmt,...) \
     if (logger->getLevel() <= level) \
     sylar::LogEventWrap(sylar::LogEvent::ptr( new sylar::LogEvent( logger, level, \
-    __FILENAME__,__LINE__,0,sylar::GetThreadID(),\
+    __FILENAME__,__LINE__,0,sylar::GetThreadId(),\
     sylar::GetFiberId(),time(0),sylar::Thread::GetName() ) ) ).getEvent()->format(fmt,__VA_ARGS__)
 
 // 普通日志级别
