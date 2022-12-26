@@ -24,7 +24,7 @@ namespace sylar{
             SYLAR_ASSERT(GetThis() == nullptr);
             t_scheduler = this;
 
-            m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this)));
+            m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this),0,true));
             sylar::Thread::SetName(m_name);
 
             t_scheduler_fiber = m_rootFiber.get();
@@ -55,20 +55,19 @@ namespace sylar{
 
     void Scheduler::start(){
 
-        {
-            MutexType::Lock lock(m_mutex);
-            if (!m_stopping){
-                return;
-            }
-            m_stopping = false;
-            SYLAR_ASSERT(m_threads.empty());
-
-            m_threads.resize(m_threadCount);
-            for (size_t i=0; i<m_threadCount; ++i){
-                m_threads[i].reset(new Thread(std::bind(&Scheduler::run,this),m_name+"_"+std::to_string(i)));
-                m_threadIds.push_back(m_threads[i]->getId());
-            }
+        MutexType::Lock lock(m_mutex);
+        if (!m_stopping){
+            return;
         }
+        m_stopping = false;
+        SYLAR_ASSERT(m_threads.empty());
+
+        m_threads.resize(m_threadCount);
+        for (size_t i=0; i<m_threadCount; ++i){
+            m_threads[i].reset(new Thread(std::bind(&Scheduler::run,this),m_name+"_"+std::to_string(i)));
+            m_threadIds.push_back(m_threads[i]->getId());
+        }
+        lock.unlock();
 
         // if (m_rootFiber){
         //     m_rootFiber->call();
@@ -111,6 +110,10 @@ namespace sylar{
         {
             MutexType::Lock lock(m_mutex);
             thrs.swap(m_threads);
+        }
+
+        for(auto &i :thrs){
+            i->join();
         }
 
         // if (exit_on_this_fiber){
@@ -212,7 +215,7 @@ namespace sylar{
                 ++m_idleThreaedCount;
                 idle_fiber->swapIn();
                 --m_idleThreaedCount;
-                if (idle_fiber->getState() != Fiber::TERM ||
+                if (idle_fiber->getState() != Fiber::TERM &&
                 idle_fiber->getState() != Fiber::EXCEPT){
                     idle_fiber->m_state = Fiber::HOLD;
                 }
