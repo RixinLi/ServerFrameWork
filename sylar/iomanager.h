@@ -25,6 +25,10 @@ private:
             std::function<void()> cb;   // 事件的回调函数
         };
 
+        EventContext& getContext(Event event);
+        void resetContext(EventContext& ctx);
+        void triggerEvent(Event event);
+
         EventContext read; // 读事件
         EventContext write; // 写事件
         int fd = 0; // 事件关联的句柄
@@ -44,6 +48,7 @@ public:
     bool cancelAll(int fd);
 
     static IOManager* GetThis();
+    void resetContext(EventContext& ctx);
 
 protected:
     void tickle() override;
