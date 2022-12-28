@@ -128,6 +128,15 @@ Thread->main_fiber -----> sub_fiber // 使用swapin 切换子协程
 	    |
 	    |
 	    v
+PutMessage(msg,) +信号量+1
+Message_queue
+    |
+    |---Thread
+    |---Thread
+    V	wait()-信号量 RevMessage(msg,1_
+    信号量
+
+异步IO，等待数据返回。epoll_wait
 ```
 
 协程调度模块schedular
