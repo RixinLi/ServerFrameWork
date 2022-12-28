@@ -61,6 +61,7 @@ protected:
     virtual void idle(); 
 
     void setThis();
+    bool hasIdleThreads() const {return m_idleThreaedCount > 0;}
 
 private:
     template<class FiberOrCb>
