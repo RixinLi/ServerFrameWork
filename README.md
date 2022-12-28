@@ -156,6 +156,15 @@ run()
 	2.无任务执行idle方法
 ```
 
+```
+IOManager(epoll)-->Scheduler
+	|
+	|
+	V
+	idle(epoll_wait)
+
+```
+
 ## socket函数库
 
 ## http协议开发
