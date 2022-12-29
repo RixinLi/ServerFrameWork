@@ -119,7 +119,7 @@ protected:
      /**
      * @brief 是否有空闲线程
      */   
-    bool hasIdleThreads() const {return m_idleThreaedCount > 0;}
+    bool hasIdleThreads() const {return m_idleThreadCount > 0;}
 
 private:
     /**
@@ -206,7 +206,7 @@ protected:
     std::vector<int> m_threadIds;                       //协程下线程ID数组
     size_t m_threadCount = 0;                           //线程数量
     std::atomic<size_t> m_activeThreadCount {0};        //工作线程数
-    std::atomic<size_t> m_idleThreaedCount {0};         //空闲线程数
+    std::atomic<size_t> m_idleThreadCount {0};         //空闲线程数
     bool m_stopping = true;                             //是否正在停止
     bool m_autoStop = false;                            //是否自动停止
     int m_rootThread = 0;                               //主线程id(use_caller)

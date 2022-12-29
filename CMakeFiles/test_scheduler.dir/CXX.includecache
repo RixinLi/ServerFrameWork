@@ -387,11 +387,9 @@ thread.h
 /home/lrx/ServerFrameWork/sylar/fiber.h
 memory
 -
-thread.h
-/home/lrx/ServerFrameWork/sylar/thread.h
-ucontext.h
--
 functional
+-
+ucontext.h
 -
 
 /home/lrx/ServerFrameWork/sylar/log.h

@@ -393,11 +393,9 @@ sylar/thread.h
 sylar/fiber.h
 memory
 -
-thread.h
-sylar/thread.h
-ucontext.h
--
 functional
+-
+ucontext.h
 -
 
 sylar/iomanager.h

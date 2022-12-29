@@ -405,11 +405,9 @@ atomic
 /home/lrx/ServerFrameWork/sylar/fiber.h
 memory
 -
-thread.h
-/home/lrx/ServerFrameWork/sylar/thread.h
-ucontext.h
--
 functional
+-
+ucontext.h
 -
 
 /home/lrx/ServerFrameWork/sylar/iomanager.cc
@@ -489,8 +487,6 @@ util.h
 /home/lrx/ServerFrameWork/sylar/scheduler.cc
 scheduler.h
 /home/lrx/ServerFrameWork/sylar/scheduler.h
-util.h
-/home/lrx/ServerFrameWork/sylar/util.h
 log.h
 /home/lrx/ServerFrameWork/sylar/log.h
 macro.h
