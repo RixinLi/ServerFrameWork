@@ -15,6 +15,7 @@ find_library(YAMLCPP yaml-cpp)
 set(LIB_SRC
     sylar/config.cc
     sylar/fiber.cc
+    sylar/iomanager.cc
     sylar/log.cc
     sylar/scheduler.cc
     sylar/thread.cc
@@ -54,6 +55,11 @@ target_link_libraries(test_fiber sylar yaml-cpp pthread)
 add_executable(test_scheduler tests/test_scheduler.cc)
 add_dependencies(test_scheduler sylar)
 target_link_libraries(test_scheduler sylar yaml-cpp pthread)
+
+
+add_executable(test_iomanager tests/test_iomanager.cc)
+add_dependencies(test_iomanager sylar)
+target_link_libraries(test_iomanager sylar yaml-cpp pthread)
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

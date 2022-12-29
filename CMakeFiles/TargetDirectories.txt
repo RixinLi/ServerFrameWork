@@ -1,4 +1,5 @@
 /home/lrx/ServerFrameWork/CMakeFiles/edit_cache.dir
+/home/lrx/ServerFrameWork/CMakeFiles/test_iomanager.dir
 /home/lrx/ServerFrameWork/CMakeFiles/rebuild_cache.dir
 /home/lrx/ServerFrameWork/CMakeFiles/test_scheduler.dir
 /home/lrx/ServerFrameWork/CMakeFiles/test_fiber.dir

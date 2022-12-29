@@ -5,16 +5,16 @@
 
 namespace sylar{
 
-class IOManager: public: Scheduler{
+class IOManager: public Scheduler{
 public:
     typedef std::shared_ptr<IOManager> ptr;
     typedef RWMutex RWMutexType;
 
     enum Event{
-        NONE    = 0x0;
-        READ    = 0x1;
-        WRITE   = 0x2;
-    }
+        NONE    = 0x0,
+        READ    = 0x1,
+        WRITE   = 0x2,
+    };
 
 private:
     struct FdContext{
@@ -32,7 +32,7 @@ private:
         EventContext read; // 读事件
         EventContext write; // 写事件
         int fd = 0; // 事件关联的句柄
-        Event m_events = NONE; // 已经注册的句柄
+        Event events = NONE; // 已经注册的句柄
         MutexType mutex;
     };
 
@@ -48,11 +48,11 @@ public:
     bool cancelAll(int fd);
 
     static IOManager* GetThis();
-    void resetContext(EventContext& ctx);
+    void resetContext(FdContext::EventContext& ctx);
 
 protected:
     void tickle() override;
-    void stopping() override;
+    bool stopping() override;
     void idle() override;
     void contextResize(size_t size);
 

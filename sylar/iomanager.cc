@@ -36,7 +36,7 @@ void IOManager::FdContext::triggerEvent(Event event){
     events = (Event)(events & ~event);
     EventContext& ctx = getContext(event);
     if (ctx.cb){
-        ctx.scheduler->Scheduler(&ctx.cb);
+        ctx.scheduler->schedule(&ctx.cb);
     }else{
         ctx.scheduler->schedule(&ctx.fiber);
     }
@@ -51,18 +51,18 @@ Scheduler(threads,use_caller,name)
     SYLAR_ASSERT(m_epfd > 0);
 
     int rt = pipe(m_tickleFds);
-    SYLAR_ASSERT(rt);
+    SYLAR_ASSERT(!rt);
 
     epoll_event event;
-    memset(&event, 0 sizeof(epoll_event));
+    memset(&event, 0, sizeof(epoll_event));
     event.events = EPOLLIN | EPOLLET;
     event.data.fd = m_tickleFds[0];
 
     rt = fcntl(m_tickleFds[0],F_SETFL,O_NONBLOCK);
-    SYLAR_ASSERT(rt);
+    SYLAR_ASSERT(!rt);
 
     rt = epoll_ctl(m_epfd,EPOLL_CTL_ADD,m_tickleFds[0],&event);
-    SYLAR_ASSERT(rt);
+    SYLAR_ASSERT(!rt);
 
     contextResize(32);
 
@@ -92,22 +92,22 @@ void IOManager::contextResize(size_t size){
 // 1 success, 0 retry, -1 error
 int IOManager::addEvent(int fd, Event event,std::function<void()> cb){
     FdContext* fd_ctx = nullptr;
-    RWMutexType::ReadLock lock(&m_mutex);
-    if (m_fdCotexts.size() > fd){
+    RWMutexType::ReadLock lock(m_mutex);
+    if ((int)m_fdCotexts.size() > fd){
         fd_ctx = m_fdCotexts[fd];
         lock.unlock();
     }
     else{
         lock.unlock();
-        RWMutexType::WriteLock lock2(&m_mutex);
+        RWMutexType::WriteLock lock2(m_mutex);
         contextResize(fd*1.5);
         fd_ctx = m_fdCotexts[fd];
     }
-    FdContext::Mutex::Lock lock2(fd_ctx->mutex);
+    FdContext::MutexType::Lock lock2(fd_ctx->mutex);
     if (fd_ctx->events & event){
         SYLAR_LOG_ERROR(g_logger)<<"addEvent assert fd="<<fd
                                  <<" event="<<event
-                                 <<" fd_ctx.event"<<fd_ctx.event;
+                                 <<" fd_ctx.event"<<fd_ctx->events;
         SYLAR_ASSERT(!(fd_ctx->events & event));
     }
 
@@ -144,7 +144,7 @@ int IOManager::addEvent(int fd, Event event,std::function<void()> cb){
 
 bool IOManager::delEvent(int fd, Event event){
     RWMutexType::ReadLock lock(m_mutex);
-    if (m_fdCotexts.size() <= fd){
+    if ((int)m_fdCotexts.size() <= fd){
         return false;
     }
     FdContext* fd_ctx = m_fdCotexts[fd];
@@ -159,10 +159,9 @@ bool IOManager::delEvent(int fd, Event event){
     int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = EPOLLET | new_events;
-    epevent.data.ptr == fd_ctx;
+    epevent.data.ptr = fd_ctx;
 
-    int fd = epoll_ctl(m_epfd,op,fd,&epevent);
-
+    int rt = epoll_ctl(m_epfd,op,fd,&epevent);
     if (rt){
         SYLAR_LOG_ERROR(g_logger)<<"epoll_cl("<<m_epfd<<", "<<op<<", "<<fd<<", "<<epevent.events<<"):"
                                  <<rt<<" ("<<errno<<") ("<<strerror(errno);
@@ -179,7 +178,7 @@ bool IOManager::delEvent(int fd, Event event){
 
 bool IOManager::cancelEvent(int fd, Event event){
     RWMutexType::ReadLock lock(m_mutex);
-    if (m_fdCotexts.size() <= fd){
+    if ((int)m_fdCotexts.size() <= fd){
         return false;
     }
     FdContext* fd_ctx = m_fdCotexts[fd];
@@ -194,10 +193,9 @@ bool IOManager::cancelEvent(int fd, Event event){
     int op = new_events ? EPOLL_CTL_MOD : EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = EPOLLET | new_events;
-    epevent.data.ptr == fd_ctx;
+    epevent.data.ptr = fd_ctx;
 
-    int fd = epoll_ctl(m_epfd,op,fd,&epevent);
-
+    int rt = epoll_ctl(m_epfd,op,fd,&epevent);
     if (rt){
         SYLAR_LOG_ERROR(g_logger)<<"epoll_cl("<<m_epfd<<", "<<op<<", "<<fd<<", "<<epevent.events<<"):"
                                  <<rt<<" ("<<errno<<") ("<<strerror(errno);
@@ -212,7 +210,7 @@ bool IOManager::cancelEvent(int fd, Event event){
 
 bool IOManager::cancelAll(int fd){
     RWMutexType::ReadLock lock(m_mutex);
-    if (m_fdCotexts.size() <= fd){
+    if ((int)m_fdCotexts.size() <= fd){
         return false;
     }
     FdContext* fd_ctx = m_fdCotexts[fd];
@@ -226,10 +224,9 @@ bool IOManager::cancelAll(int fd){
     int op = EPOLL_CTL_DEL;
     epoll_event epevent;
     epevent.events = 0;
-    epevent.data.ptr == fd_ctx;
+    epevent.data.ptr = fd_ctx;
 
-    int fd = epoll_ctl(m_epfd,op,fd,&epevent);
-
+    int rt = epoll_ctl(m_epfd,op,fd,&epevent);
     if (rt){
         SYLAR_LOG_ERROR(g_logger)<<"epoll_cl("<<m_epfd<<", "<<op<<", "<<fd<<", "<<epevent.events<<"):"
                                  <<rt<<" ("<<errno<<") ("<<strerror(errno);
@@ -259,7 +256,7 @@ void IOManager::tickle(){
     SYLAR_ASSERT(rt==1);
 }
 
-void IOManager::stopping(){
+bool IOManager::stopping(){
     return Scheduler::stopping() && m_pendingEventCount == 0;
 }
 
@@ -267,13 +264,13 @@ void IOManager::stopping(){
 void IOManager::idle(){
     epoll_event* events = new epoll_event[64]();
     std::shared_ptr<epoll_event> shared_events(events,[](epoll_event* ptr){
-        delete[] events;
+        delete[] ptr;
     });
 
     while(true){
 
         if (stopping()){
-            SYLAR_LOG_INFO(g_logger)<<"name="<<m_name<<" idle stopping exit";
+            SYLAR_LOG_INFO(g_logger)<<"name="<<getName()<<" idle stopping exit";
             break;
         }
 
@@ -295,9 +292,9 @@ void IOManager::idle(){
                 continue;
             }
 
-            FdContext* fd_ctx = event.data.ptr;
-            FdContext::MutexType::Lock lock(fd_ctx->m_mutex);
-            if (event.events & (EPOLLERR | EPOLLUP) ){
+            FdContext* fd_ctx = (FdContext*)event.data.ptr;
+            FdContext::MutexType::Lock lock(fd_ctx->mutex);
+            if (event.events & (EPOLLERR | EPOLLHUP) ){
                 event.events |= EPOLLIN | EPOLLOUT;
             }
             int real_events = NONE;
@@ -308,7 +305,7 @@ void IOManager::idle(){
                 real_events |= WRITE;
             }
             
-            if (fd_ctx->events & real_events == NONE) continue;
+            if ( (fd_ctx->events & real_events) == NONE) continue;
 
             int left_events = (fd_ctx->events & ~real_events);
 

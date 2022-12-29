@@ -24,9 +24,13 @@ namespace sylar{
             SYLAR_ASSERT(GetThis() == nullptr);
             t_scheduler = this;
 
-            m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this),0,true));
+            //使用caller 便设置主协程并跑起来协程调度
+            m_rootFiber.reset(new Fiber(std::bind(&Scheduler::run, this),0,true));//tips of bind: 类成员函数需要绑定该类的this指针 
+            
+            // 设置线程名称
             sylar::Thread::SetName(m_name);
 
+            // 得到主协程的生指针，设置到线程独有静态量
             t_scheduler_fiber = m_rootFiber.get();
             m_rootThread = sylar::GetThreadId();
             m_threadIds.push_back(m_rootThread);
@@ -99,8 +103,12 @@ namespace sylar{
         for (size_t i=0; i<m_threadCount; i++){
             tickle();
         }
+
         if (m_rootFiber){
             tickle();
+        }
+
+        if (m_rootFiber){
             if(!stopping()){
                 m_rootFiber->call();
             }
@@ -125,9 +133,9 @@ namespace sylar{
     }
 
     void Scheduler::run(){
-        SYLAR_LOG_INFO(g_logger)<<"run";
+        SYLAR_LOG_DEBUG(g_logger)<<"run";
         setThis();
-        if (sylar::GetFiberId() != (uint32_t)m_rootThread){
+        if (sylar::GetThreadId() != m_rootThread){
             t_scheduler_fiber = Fiber::GetThis().get();
         }
 
@@ -145,7 +153,7 @@ namespace sylar{
                 while(it != m_fibers.end()){
                     if (it->thread != -1 && it->thread != sylar::GetThreadId())
                     {
-                        it++;
+                        ++it;
                         tickle_me = true;
                         continue;
                     }
@@ -169,7 +177,7 @@ namespace sylar{
                 tickle();
             }
 
-            if (ft.fiber && ft.fiber->getState()!= Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT )
+            if (ft.fiber && ( ft.fiber->getState()!= Fiber::TERM && ft.fiber->getState() != Fiber::EXCEPT ) )
             {
                 ft.fiber->swapIn();
                 --m_activeThreadCount;
