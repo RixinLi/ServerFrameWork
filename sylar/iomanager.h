@@ -12,8 +12,8 @@ public:
 
     enum Event{
         NONE    = 0x0,
-        READ    = 0x1,
-        WRITE   = 0x2,
+        READ    = 0x1, // EPOLLIN
+        WRITE   = 0x4, // EPOLLOUT
     };
 
 private:

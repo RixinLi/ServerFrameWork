@@ -361,6 +361,18 @@ sylar/sylar.h
 /home/lrx/ServerFrameWork/tests/sylar/sylar.h
 sylar/iomanager.h
 /home/lrx/ServerFrameWork/tests/sylar/iomanager.h
+sys/types.h
+-
+sys/socket.h
+-
+arpa/inet.h
+-
+unistd.h
+-
+fcntl.h
+-
+sys/epoll.h
+-
 
 sylar/config.h
 memory
