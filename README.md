@@ -177,6 +177,13 @@ IOManager(epoll)-->Scheduler
 
 ```
 
+```cpp
+timer-> addTime()
+timer-> cancel()
+获取当前的定时器触发离现在的时间差
+返回当前需要的定时器
+```
+
 ## socket函数库
 
 ## http协议开发
