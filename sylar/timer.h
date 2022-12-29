@@ -16,6 +16,12 @@ public:
 private:
     Timer(uint64_t ms, std::function<void()> cb, bool recurring, TimerManager* manager);
 
+    Timer(uint64_t next);
+
+    bool cancel();
+    bool refresh();
+    bool reset(uint64_t ms, bool from_now);
+
 private:
     bool m_recurring = false;           // 是否循环执行定时器
     uint64_t m_ms = 0;                  // 定时器的循环间隔
@@ -43,11 +49,20 @@ public:
 
     Timer::ptr addConditionTimer(uint64_t ms, std::function<void()> cb
                                 , std::weak_ptr<void> weak_cond, bool recurring = false);
+
+    uint64_t getNextTimer();
+
+    void listExpiredCb(std::vector<std::function<void()> >& cbs);
 protected:
-      virtual void onTimerInsertedAtFront() = 0;
+    virtual void onTimerInsertedAtFront() = 0;
+    void addTimer(Timer::ptr val, RWMutexType::writeLock& lock);
+private:
+    bool detectClockRollover(uint64_t now_ms);
 private:
     RWMutexType m_mutex;
     std::set<Timer::ptr,Timer::Comparator> m_timers;
+    bool m_tickled = false;
+    uint64_t m_previousTime = 0;
 };
 
 }
