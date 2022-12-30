@@ -410,6 +410,20 @@ functional
 ucontext.h
 -
 
+/home/lrx/ServerFrameWork/sylar/hook.cc
+hook.h
+/home/lrx/ServerFrameWork/sylar/hook.h
+fiber.h
+/home/lrx/ServerFrameWork/sylar/fiber.h
+iomanager.h
+/home/lrx/ServerFrameWork/sylar/iomanager.h
+dlfcn.h
+-
+
+/home/lrx/ServerFrameWork/sylar/hook.h
+unistd.h
+-
+
 /home/lrx/ServerFrameWork/sylar/iomanager.cc
 iomanager.h
 /home/lrx/ServerFrameWork/sylar/iomanager.h
@@ -493,6 +507,8 @@ log.h
 /home/lrx/ServerFrameWork/sylar/log.h
 macro.h
 /home/lrx/ServerFrameWork/sylar/macro.h
+hook.h
+/home/lrx/ServerFrameWork/sylar/hook.h
 
 /home/lrx/ServerFrameWork/sylar/scheduler.h
 memory
