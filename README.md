@@ -183,6 +183,18 @@ timer-> cancel()
 获取当前的定时器触发离现在的时间差
 返回当前需要的定时器
 ```
+```
+	[FIBER]				[Timer]
+	   ^ N				^
+	   |				|
+	   | 1				|
+	[Thread]		[TimerMananger]
+	    ^N			 ^
+	    |			 |	
+	    |1			 |
+	[Scheduler] <---- [IOManager(epoll)]
+```
+
 
 ## socket函数库
 
