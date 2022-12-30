@@ -195,6 +195,9 @@ timer-> cancel()
 	[Scheduler] <---- [IOManager(epoll)]
 ```
 
+## HOOK
+sleep,
+usleep
 
 ## socket函数库
 
