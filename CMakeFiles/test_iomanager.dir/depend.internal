@@ -43,4 +43,5 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o
  sylar/singleton.h
  sylar/sylar.h
  sylar/thread.h
+ sylar/timer.h
  sylar/util.h

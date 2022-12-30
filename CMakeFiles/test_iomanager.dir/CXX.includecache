@@ -413,6 +413,8 @@ ucontext.h
 sylar/iomanager.h
 scheduler.h
 sylar/scheduler.h
+timer.h
+sylar/timer.h
 
 sylar/log.h
 string
@@ -503,6 +505,16 @@ semaphore.h
 -
 atomic
 -
+
+sylar/timer.h
+memory
+-
+vector
+-
+set
+-
+thread.h
+sylar/thread.h
 
 sylar/util.h
 pthread.h

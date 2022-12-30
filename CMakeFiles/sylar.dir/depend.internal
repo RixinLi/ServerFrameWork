@@ -89,6 +89,7 @@ CMakeFiles/sylar.dir/sylar/iomanager.cc.o
  /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
+ /home/lrx/ServerFrameWork/sylar/timer.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/log.cc.o
  /apps/yaml-cpp/include/yaml-cpp/binary.h
@@ -142,6 +143,11 @@ CMakeFiles/sylar.dir/sylar/thread.cc.o
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.cc
  /home/lrx/ServerFrameWork/sylar/thread.h
+ /home/lrx/ServerFrameWork/sylar/util.h
+CMakeFiles/sylar.dir/sylar/timer.cc.o
+ /home/lrx/ServerFrameWork/sylar/thread.h
+ /home/lrx/ServerFrameWork/sylar/timer.cc
+ /home/lrx/ServerFrameWork/sylar/timer.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/util.cc.o
  /home/lrx/ServerFrameWork/sylar/fiber.h

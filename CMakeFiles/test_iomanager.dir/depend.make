@@ -42,5 +42,6 @@ CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: sylar/scheduler.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: sylar/singleton.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: sylar/sylar.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: sylar/thread.h
+CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: sylar/timer.h
 CMakeFiles/test_iomanager.dir/tests/test_iomanager.cc.o: sylar/util.h
 
