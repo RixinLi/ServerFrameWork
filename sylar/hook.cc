@@ -1,9 +1,14 @@
 #include "hook.h"
 #include "fiber.h"
 #include "iomanager.h"
+#include "fd_manager.h"
+#include "log.h"
+
 #include <dlfcn.h>
 
 namespace sylar{
+
+sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
 static thread_local bool t_hook_enable = false;
 
@@ -60,10 +65,86 @@ void set_hook_enable(bool flag){
 
 }
 
+struct timer_info{
+    int cancelled = 0;
+}
+
+template<typename OriginFun, typename ... Args >
+static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
+uint32_t event, int timeout_so, Args&&... args){
+    if (!sylar::t_hook_enable){
+        return fun(fd,std::forward<Args>(args)...);
+    }
+
+    sylar::FdCtx::ptr ctx = sylar::FdMgr::GetInstance()->get(fd);
+    if (!ctx){
+        return fun(fd,std::forward<Args>(args)...);
+    }
+
+    if (ctx->isClose()){
+        errno = EBADF;
+        return -1;
+    }
+
+    if (!ctx->isSocket() || ctx->getUserNonblock()){
+        return fun(fd,std::forward<Args>(args)...);
+    }
+
+    uint64_t to = ctx->getTimeout(timeout_so);
+    std::shared_ptr<timer_info> tinfo(new timer_info);
+
+retry:
+    ssize_t n = fun(fd,std::forward<Args>(args)...);
+    while(n==-1 && errno == EINTR){
+        n = fun(fd,std::forward<Args>(args)...);
+    }
+    
+    if (n==-1 && errno == EAGAIN){
+        sylar::IOManager* iom = sylar::IOManager::GetThis();
+        sylar::Timer::ptr timer;
+        std::weak_ptr<timer_info> winfo(tinfo);
+
+        if (to != (uint64_t)-1){
+            timer = iom->addConditionTimer(to,[winfo,fd,iom,event](){
+                 auto t = winfo.lock();
+                 if (!t || t->cancelled){
+                    return;
+                 }
+                 t->cancelled = ETIMEOUT;
+                 iom->cancelEvent(fd,(sylar::IOManager::Event)(event));
+            },winfo);
+        }
+    
+
+        int rt = iom->addEvent(fd,(sylar::IOManager::Event)(event));
+        if (rt){
+            SYLAR_LOG_ERROR(g_logger)<<hook_fun_name<<"addEvent("<<fd<<", "<<event<<")";
+            if (timer){
+                timer->cancel();
+            }
+            return -1;
+        }
+        else{
+            sylar::Fiber::YieldToHold();
+            if (Timer){
+                timer->cancel();
+            }
+            if (tinfo->cancelled){
+                errno = tinfo->cancelled;
+                return -1;
+            }
+
+            goto retry;
+        }
+    }
+    return n;
+}
+
 extern "C"{
 #define XX(name) name ## _fun name ## _f = nullptr;
     HOOK_FUN(XX);
 #undef XX
+
 
 unsigned int sleep(unsigned int seconds){
     if(!sylar::t_hook_enable){

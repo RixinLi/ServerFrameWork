@@ -2,6 +2,7 @@
 #define __FD_MANAGER_H__
 #include <memory>
 #include "thread.h"
+#include "singleton.h"
 
 namespace sylar{
 
@@ -55,6 +56,7 @@ private:
 
 };
 
+typedef Singleton<FdManager> FdMgr;
 
 }
 
