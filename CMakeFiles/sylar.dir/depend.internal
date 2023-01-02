@@ -39,6 +39,17 @@ CMakeFiles/sylar.dir/sylar/config.cc.o
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
+CMakeFiles/sylar.dir/sylar/fd_manager.cc.o
+ /home/lrx/ServerFrameWork/sylar/fd_manager.cc
+ /home/lrx/ServerFrameWork/sylar/fd_manager.h
+ /home/lrx/ServerFrameWork/sylar/fiber.h
+ /home/lrx/ServerFrameWork/sylar/hook.h
+ /home/lrx/ServerFrameWork/sylar/iomanager.h
+ /home/lrx/ServerFrameWork/sylar/scheduler.h
+ /home/lrx/ServerFrameWork/sylar/singleton.h
+ /home/lrx/ServerFrameWork/sylar/thread.h
+ /home/lrx/ServerFrameWork/sylar/timer.h
+ /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/fiber.cc.o
  /apps/yaml-cpp/include/yaml-cpp/binary.h
  /apps/yaml-cpp/include/yaml-cpp/dll.h
@@ -81,11 +92,14 @@ CMakeFiles/sylar.dir/sylar/fiber.cc.o
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/hook.cc.o
+ /home/lrx/ServerFrameWork/sylar/fd_manager.h
  /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/hook.cc
  /home/lrx/ServerFrameWork/sylar/hook.h
  /home/lrx/ServerFrameWork/sylar/iomanager.h
+ /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/scheduler.h
+ /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/timer.h
  /home/lrx/ServerFrameWork/sylar/util.h

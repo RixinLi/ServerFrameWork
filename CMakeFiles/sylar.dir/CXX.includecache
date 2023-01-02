@@ -388,6 +388,36 @@ log.h
 thread.h
 /home/lrx/ServerFrameWork/sylar/thread.h
 
+/home/lrx/ServerFrameWork/sylar/fd_manager.cc
+fd_manager.h
+/home/lrx/ServerFrameWork/sylar/fd_manager.h
+hook.h
+/home/lrx/ServerFrameWork/sylar/hook.h
+sys/types.h
+-
+sys/stat.h
+-
+unistd.h
+-
+
+/home/lrx/ServerFrameWork/sylar/fd_manager.h
+memory
+-
+thread.h
+/home/lrx/ServerFrameWork/sylar/thread.h
+singleton.h
+/home/lrx/ServerFrameWork/sylar/singleton.h
+iomanager.h
+/home/lrx/ServerFrameWork/sylar/iomanager.h
+vector
+-
+sys/types.h
+-
+sys/stat.h
+-
+unistd.h
+-
+
 /home/lrx/ServerFrameWork/sylar/fiber.cc
 fiber.h
 /home/lrx/ServerFrameWork/sylar/fiber.h
@@ -417,6 +447,10 @@ fiber.h
 /home/lrx/ServerFrameWork/sylar/fiber.h
 iomanager.h
 /home/lrx/ServerFrameWork/sylar/iomanager.h
+fd_manager.h
+/home/lrx/ServerFrameWork/sylar/fd_manager.h
+log.h
+/home/lrx/ServerFrameWork/sylar/log.h
 dlfcn.h
 -
 
