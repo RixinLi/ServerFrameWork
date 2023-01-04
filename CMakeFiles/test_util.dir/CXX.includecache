@@ -428,6 +428,8 @@ assert.h
 util.h
 /home/lrx/ServerFrameWork/sylar/util.h
 
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
+
 /home/lrx/ServerFrameWork/sylar/scheduler.h
 memory
 -
@@ -481,6 +483,8 @@ semaphore.h
 -
 atomic
 -
+noncopyable.h
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
 
 /home/lrx/ServerFrameWork/sylar/util.h
 pthread.h

@@ -412,6 +412,8 @@ string.h
 thread.h
 /home/lrx/ServerFrameWork/sylar/thread.h
 
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
+
 /home/lrx/ServerFrameWork/sylar/singleton.h
 memory
 -
@@ -433,6 +435,8 @@ semaphore.h
 -
 atomic
 -
+noncopyable.h
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
 
 /home/lrx/ServerFrameWork/sylar/util.h
 pthread.h

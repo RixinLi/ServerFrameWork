@@ -451,6 +451,8 @@ fd_manager.h
 /home/lrx/ServerFrameWork/sylar/fd_manager.h
 log.h
 /home/lrx/ServerFrameWork/sylar/log.h
+config.h
+/home/lrx/ServerFrameWork/sylar/config.h
 dlfcn.h
 -
 
@@ -544,6 +546,8 @@ assert.h
 util.h
 /home/lrx/ServerFrameWork/sylar/util.h
 
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
+
 /home/lrx/ServerFrameWork/sylar/scheduler.cc
 scheduler.h
 /home/lrx/ServerFrameWork/sylar/scheduler.h
@@ -597,6 +601,8 @@ semaphore.h
 -
 atomic
 -
+noncopyable.h
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
 
 /home/lrx/ServerFrameWork/sylar/timer.cc
 timer.h

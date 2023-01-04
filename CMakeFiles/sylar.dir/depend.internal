@@ -36,6 +36,7 @@ CMakeFiles/sylar.dir/sylar/config.cc.o
  /home/lrx/ServerFrameWork/sylar/config.cc
  /home/lrx/ServerFrameWork/sylar/config.h
  /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
@@ -45,6 +46,7 @@ CMakeFiles/sylar.dir/sylar/fd_manager.cc.o
  /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/hook.h
  /home/lrx/ServerFrameWork/sylar/iomanager.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
@@ -87,17 +89,51 @@ CMakeFiles/sylar.dir/sylar/fiber.cc.o
  /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/macro.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/hook.cc.o
+ /apps/yaml-cpp/include/yaml-cpp/binary.h
+ /apps/yaml-cpp/include/yaml-cpp/dll.h
+ /apps/yaml-cpp/include/yaml-cpp/emitter.h
+ /apps/yaml-cpp/include/yaml-cpp/emitterdef.h
+ /apps/yaml-cpp/include/yaml-cpp/emittermanip.h
+ /apps/yaml-cpp/include/yaml-cpp/emitterstyle.h
+ /apps/yaml-cpp/include/yaml-cpp/exceptions.h
+ /apps/yaml-cpp/include/yaml-cpp/mark.h
+ /apps/yaml-cpp/include/yaml-cpp/node/convert.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/impl.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/iterator.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/iterator_fwd.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/memory.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/node.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/node_data.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/node_iterator.h
+ /apps/yaml-cpp/include/yaml-cpp/node/detail/node_ref.h
+ /apps/yaml-cpp/include/yaml-cpp/node/emit.h
+ /apps/yaml-cpp/include/yaml-cpp/node/impl.h
+ /apps/yaml-cpp/include/yaml-cpp/node/iterator.h
+ /apps/yaml-cpp/include/yaml-cpp/node/node.h
+ /apps/yaml-cpp/include/yaml-cpp/node/parse.h
+ /apps/yaml-cpp/include/yaml-cpp/node/ptr.h
+ /apps/yaml-cpp/include/yaml-cpp/node/type.h
+ /apps/yaml-cpp/include/yaml-cpp/noexcept.h
+ /apps/yaml-cpp/include/yaml-cpp/null.h
+ /apps/yaml-cpp/include/yaml-cpp/ostream_wrapper.h
+ /apps/yaml-cpp/include/yaml-cpp/parser.h
+ /apps/yaml-cpp/include/yaml-cpp/stlemitter.h
+ /apps/yaml-cpp/include/yaml-cpp/traits.h
+ /apps/yaml-cpp/include/yaml-cpp/yaml.h
+ /home/lrx/ServerFrameWork/sylar/config.h
  /home/lrx/ServerFrameWork/sylar/fd_manager.h
  /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/hook.cc
  /home/lrx/ServerFrameWork/sylar/hook.h
  /home/lrx/ServerFrameWork/sylar/iomanager.h
  /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
@@ -109,6 +145,7 @@ CMakeFiles/sylar.dir/sylar/iomanager.cc.o
  /home/lrx/ServerFrameWork/sylar/iomanager.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/macro.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
@@ -149,6 +186,7 @@ CMakeFiles/sylar.dir/sylar/log.cc.o
  /home/lrx/ServerFrameWork/sylar/config.h
  /home/lrx/ServerFrameWork/sylar/log.cc
  /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
@@ -157,6 +195,7 @@ CMakeFiles/sylar.dir/sylar/scheduler.cc.o
  /home/lrx/ServerFrameWork/sylar/hook.h
  /home/lrx/ServerFrameWork/sylar/log.h
  /home/lrx/ServerFrameWork/sylar/macro.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/scheduler.cc
  /home/lrx/ServerFrameWork/sylar/scheduler.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
@@ -164,11 +203,13 @@ CMakeFiles/sylar.dir/sylar/scheduler.cc.o
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/thread.cc.o
  /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.cc
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h
 CMakeFiles/sylar.dir/sylar/timer.cc.o
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/timer.cc
  /home/lrx/ServerFrameWork/sylar/timer.h
@@ -176,6 +217,7 @@ CMakeFiles/sylar.dir/sylar/timer.cc.o
 CMakeFiles/sylar.dir/sylar/util.cc.o
  /home/lrx/ServerFrameWork/sylar/fiber.h
  /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.cc

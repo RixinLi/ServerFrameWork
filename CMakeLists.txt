@@ -3,7 +3,8 @@ project(sylar)
 
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -Werror -Wno-unused-function")
+#-Werror
+set(CMAKE_CXX_FLAGS "$ENV{CXXFLAGS} -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -fpermissive -Wno-unused-function")
 
 include_directories(.)
 include_directories(/apps/yaml-cpp/include)

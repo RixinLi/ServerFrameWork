@@ -452,6 +452,8 @@ assert.h
 util.h
 sylar/util.h
 
+sylar/noncopyable.h
+
 sylar/scheduler.h
 memory
 -
@@ -505,6 +507,8 @@ semaphore.h
 -
 atomic
 -
+noncopyable.h
+sylar/noncopyable.h
 
 sylar/timer.h
 memory

@@ -3,6 +3,7 @@
 
 CMakeFiles/test.dir/tests/test.cc.o
  /home/lrx/ServerFrameWork/sylar/log.h
+ /home/lrx/ServerFrameWork/sylar/noncopyable.h
  /home/lrx/ServerFrameWork/sylar/singleton.h
  /home/lrx/ServerFrameWork/sylar/thread.h
  /home/lrx/ServerFrameWork/sylar/util.h

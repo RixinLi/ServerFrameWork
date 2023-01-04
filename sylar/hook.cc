@@ -3,12 +3,15 @@
 #include "iomanager.h"
 #include "fd_manager.h"
 #include "log.h"
+#include "config.h"
 
 #include <dlfcn.h>
 
 sylar::Logger::ptr g_logger = SYLAR_LOG_NAME("system");
 
 namespace sylar{
+
+static sylar::ConfigVar<int>::ptr g_tcp_connect_timeout = sylar::Config::Lookup("tcp.connect.timeout",5000, "tcp connect timeout");
 
 static thread_local bool t_hook_enable = false;
 
@@ -46,9 +49,16 @@ void hook_init() {
 #undef XX
 }
 
+static uint64_t s_connect_timeout = -1;
+
 struct _HookIniter{
     _HookIniter(){
         hook_init();
+        s_connect_timeout = g_tcp_connect_timeout->getValue();
+        g_tcp_connect_timeout->addListener([](const int& old_value, const int& new_value){
+            SYLAR_LOG_INFO(g_logger)<<"tcp connect timeout changed from "<<old_value<<" to "<<new_value;
+            s_connect_timeout = new_value;
+        });
     }
 };
 
@@ -69,13 +79,14 @@ struct timer_info{
     int cancelled = 0;
 };
 
-template<typename OriginFun, typename ... Args >
+template<typename OriginFun, typename... Args >
 static ssize_t do_io(int fd, OriginFun fun, const char* hook_fun_name,
 uint32_t event, int timeout_so, Args&&... args){
     if (!sylar::t_hook_enable){
         return fun(fd,std::forward<Args>(args)...);
     }
 
+    // SYLAR_LOG_DEBUG(g_logger)<<"do_io<"<<hook_fun_name<<">";
     sylar::FdCtx::ptr ctx = sylar::FdMgr::GetInstance()->get(fd);
     if (!ctx){
         return fun(fd,std::forward<Args>(args)...);
@@ -100,6 +111,7 @@ retry:
     }
     
     if (n==-1 && errno == EAGAIN){
+        SYLAR_LOG_DEBUG(g_logger)<<"do_io<"<<hook_fun_name<<">";
         sylar::IOManager* iom = sylar::IOManager::GetThis();
         sylar::Timer::ptr timer;
         std::weak_ptr<timer_info> winfo(tinfo);
@@ -200,7 +212,7 @@ int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen,
         return connect_f(fd,addr,addrlen);
     }
     sylar::FdCtx::ptr ctx = sylar::FdMgr::GetInstance()->get(fd);
-    if (!ctx || ctx->isClosed()){
+    if (!ctx || ctx->isClose()){
         errno = EBADF;
         return -1;
     }
@@ -220,7 +232,7 @@ int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen,
 
     sylar::Timer::ptr timer;
     std::shared_ptr<timer_info> tinfo(new timer_info);
-    sttd::weak_ptr<timer_info> winfo(tinfo);
+    std::weak_ptr<timer_info> winfo(tinfo);
 
     if (timeout_ms != (uint64_t)-1){
         timer = iom->addConditionTimer(timeout_ms, [winfo,fd,iom]{
@@ -247,7 +259,7 @@ int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen,
     }
 
     int error = 0;
-    socklen_t len = sizeof(init);
+    socklen_t len = sizeof(int);
     if (-1 == getsockopt(fd,SOL_SOCKET,SO_ERROR,&error,&len)) return -1;
 
     if (!error) return 0;
@@ -259,7 +271,7 @@ int connect_with_timeout(int fd, const struct sockaddr* addr, socklen_t addrlen,
 
 /*connect*/
 int connect(int sockfd, const struct sockaddr *addr,socklen_t addrlen){
-    return connect_f(sockfd,addr,addrlen);
+    return connect_with_timeout(sockfd,addr,addrlen,sylar::s_connect_timeout);
 }
 
 /*accept*/
@@ -333,9 +345,6 @@ int close(int fd){
 // socket control
 // fcntl
 int fcntl(int fd, int cmd, ... /* arg */ ){
-    if (!sylar::t_hook_enable){
-        return fcntl_f(fd,int cmd,)
-    }
 
     va_list va;
     va_start(va,cmd);
@@ -345,7 +354,7 @@ int fcntl(int fd, int cmd, ... /* arg */ ){
             int arg = va_arg(va,int);
             va_end(va);
             sylar::FdCtx::ptr ctx =  sylar::FdMgr::GetInstance()->get(fd);
-            if(!ctx || ctx->isClosed() || !ctx->isSocket()){
+            if(!ctx || ctx->isClose() || !ctx->isSocket()){
                 return fcntl_f(fd,cmd,arg);
             }
             ctx->setUserNonblock(arg & O_NONBLOCK);
@@ -363,7 +372,7 @@ int fcntl(int fd, int cmd, ... /* arg */ ){
             va_end(va);
             int arg = fcntl_f(fd,cmd);
             sylar::FdCtx::ptr ctx =  sylar::FdMgr::GetInstance()->get(fd);
-            if (!ctx || ctx->isClosed() || !ctx->isSocket()){
+            if (!ctx || ctx->isClose() || !ctx->isSocket()){
                 return arg;
             }
             if (ctx->getUserNonblock()){
@@ -427,22 +436,23 @@ int fcntl(int fd, int cmd, ... /* arg */ ){
 }
 
 // ioctl
-int ioctl(int d, int request, ...){
+int ioctl(int d, unsigned long int request, ...){
+
     va_list va;
     va_start(va,request);
     void* arg = va_arg(va,void*);
-    va_end();
+    va_end(va);
 
     if (FIONBIO == request){
         bool user_nonblock = !!*(int*)arg;
         sylar::FdCtx::ptr ctx =  sylar::FdMgr::GetInstance()->get(d);
-        if (!ctx || ctx->isClosed() || !ctx->isSocket()){
-            return ioctl_f(fd,request,arg);
+        if (!ctx || ctx->isClose() || !ctx->isSocket()){
+            return ioctl_f(d,request,arg);
         }
         ctx->setUserNonblock(user_nonblock);
     }
 
-    return ioctl_f(fd,request,arg);
+    return ioctl_f(d,request,arg);
 }
 
 // socket option
@@ -463,7 +473,7 @@ int setsockopt(int sockfd, int level, int optname,
             sylar::FdCtx::ptr ctx =  sylar::FdMgr::GetInstance()->get(sockfd);
             if (ctx){
                 const timeval* v = (const timeval*)optval;
-                ctx->setTimeout(optname, tv->tv_sec * 1000 + tv->tv_usec / 1000);
+                ctx->setTimeout(optname, v->tv_sec * 1000 + v->tv_usec / 1000);
             }
         }
     }

@@ -7,6 +7,7 @@ CMakeFiles/test_hook.dir/tests/test_hook.cc.o
  sylar/hook.h
  sylar/iomanager.h
  sylar/log.h
+ sylar/noncopyable.h
  sylar/scheduler.h
  sylar/singleton.h
  sylar/thread.h
