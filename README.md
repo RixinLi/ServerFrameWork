@@ -197,9 +197,29 @@ timer-> cancel()
 
 ## HOOK
 sleep,
-usleep
+usleep,
+
+socket 相关的(socket, connect, accept)
+io相关(read, write, send, recv, ...)
+fd相关(fcntl, iocntl, ...)
+
+
 
 ## socket函数库
+		 [UnixAddress]
+		-----------	
+		     |	
+		-----------	
+						| [IPV4Address]
+		| Address | --- [IPAddress] --- |
+						| [IPV6Address]
+		-----------
+		     |
+		     |
+		  -------
+		  | socket |
+		  ---------
+		     
 
 ## http协议开发
 
