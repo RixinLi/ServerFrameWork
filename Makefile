@@ -230,6 +230,33 @@ test_iomanager/fast:
 	$(MAKE) -f CMakeFiles/test_iomanager.dir/build.make CMakeFiles/test_iomanager.dir/build
 .PHONY : test_iomanager/fast
 
+sylar/address.o: sylar/address.cc.o
+
+.PHONY : sylar/address.o
+
+# target to build an object file
+sylar/address.cc.o:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/address.cc.o
+.PHONY : sylar/address.cc.o
+
+sylar/address.i: sylar/address.cc.i
+
+.PHONY : sylar/address.i
+
+# target to preprocess a source file
+sylar/address.cc.i:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/address.cc.i
+.PHONY : sylar/address.cc.i
+
+sylar/address.s: sylar/address.cc.s
+
+.PHONY : sylar/address.s
+
+# target to generate assembly for a file
+sylar/address.cc.s:
+	$(MAKE) -f CMakeFiles/sylar.dir/build.make CMakeFiles/sylar.dir/sylar/address.cc.s
+.PHONY : sylar/address.cc.s
+
 sylar/config.o: sylar/config.cc.o
 
 .PHONY : sylar/config.o
@@ -733,6 +760,9 @@ help:
 	@echo "... test_thread"
 	@echo "... rebuild_cache"
 	@echo "... test_iomanager"
+	@echo "... sylar/address.o"
+	@echo "... sylar/address.i"
+	@echo "... sylar/address.s"
 	@echo "... sylar/config.o"
 	@echo "... sylar/config.i"
 	@echo "... sylar/config.s"
