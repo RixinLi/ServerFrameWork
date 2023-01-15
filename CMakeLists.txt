@@ -73,5 +73,9 @@ add_executable(test_hook tests/test_hook.cc)
 add_dependencies(test_hook sylar)
 target_link_libraries(test_hook "${LIBS}")
 
+add_executable(test_address tests/test_address.cc)
+add_dependencies(test_address sylar)
+target_link_libraries(test_address "${LIBS}")
+
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)

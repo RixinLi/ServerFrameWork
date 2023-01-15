@@ -1,0 +1,1 @@
+/opt/rh/devtoolset-10/root/usr/bin/c++    -rdynamic -O0 -ggdb -std=c++11 -Wall -Wno-deprecated -fpermissive -Wno-unused-function    CMakeFiles/test_address.dir/tests/test_address.cc.o  -o bin/test_address  -L/apps/yaml-cpp/lib -rdynamic lib/libsylar.so -ldl -lpthread -lyaml-cpp -Wl,-rpath,/apps/yaml-cpp/lib:/home/lrx/ServerFrameWork/lib 

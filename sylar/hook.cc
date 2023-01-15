@@ -466,7 +466,7 @@ int setsockopt(int sockfd, int level, int optname,
                     const void *optval, socklen_t optlen)
 {
     if (!sylar::t_hook_enable){
-        return setsockopt(sockfd,level,optname, optval, optlen);
+        return setsockopt_f(sockfd,level,optname, optval, optlen);
     }
     if (level == SOL_SOCKET){
         if (optname == SO_RCVTIMEO || optname == SO_SNDTIMEO){
@@ -482,4 +482,3 @@ int setsockopt(int sockfd, int level, int optname,
 }
 
 }
-

@@ -14,6 +14,15 @@ static T CreateMask(uint32_t bits){
     return (1 << (sizeof(T) * 8 - bits)) - 1;
 }
 
+template<class T>
+static uint32_t CountBytes(T value){
+    uint32_t result = 0;
+    for(;value;++result){
+        value &= value - 1;
+    }
+    return result;
+}
+
 Address::ptr Address::LookupAny(const std::string& host, 
         int family, int type, int protocol)
 {
@@ -71,7 +80,7 @@ bool Address::GetInterfaceAddresses(std::multimap<std::string,std::pair<Address:
                 case AF_INET6:
                     {
                         addr = Create(next->ifa_addr,sizeof(sockaddr_in6));
-                        in6_addr& netmask = ((sockaddr_in6*)next->ifa_netmask)->sin6_addr.s_addr;
+                        in6_addr& netmask = ((sockaddr_in6*)next->ifa_netmask)->sin6_addr;
                         prefix_len = 0;
                         for (int i=0;i<16;++i){
                             prefix_len += CountBytes(netmask.s6_addr[i]);
@@ -82,21 +91,21 @@ bool Address::GetInterfaceAddresses(std::multimap<std::string,std::pair<Address:
                     break;
             }
 
-            if (address){
-                result.insert(std::make_pair(next->ifa_name,std::make_pair(address, prefix_len)));
+            if (addr){
+                result.insert(std::make_pair(next->ifa_name,std::make_pair(addr, prefix_len)));
             }
         }
-    }catch(...)
+    }catch(...){
         SYLAR_LOG_ERROR(g_logger)<<"Address::GetInterfaceAddresses exception";
-        freeaddrinfo(results);
+        freeifaddrs(results);
         return false;
     }
 
-    freeaddrinfo(results);
+    freeifaddrs(results);
     return true;
 }
 
-bool Address::GetInterfaceAddresses(std::vector<std::pair<Address::ptr,uint32_t> >&result,
+bool Address::GetInterfaceAddresses(std::vector< std::pair<Address::ptr,uint32_t> >&result,
             const std::string& iface, int family)
 {
     if (iface.empty() || iface == "*") {
@@ -131,7 +140,7 @@ bool Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
     hints.ai_socktype = type;
     hints.ai_protocol = protocol;
     hints.ai_addrlen = 0;
-    hints.ai_cannoname = NULL;
+    hints.ai_canonname = NULL;
     hints.ai_addr = NULL;
     hints.ai_next = NULL;
     
@@ -139,8 +148,8 @@ bool Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
     const char* service = NULL;
 
     // 检查 ipv6address service
-    if (!host.empty() && host[0]=="["){
-        const char* endipv6 = (const char*)memchr(host.c_str()+1,"]", host.size()-1);
+    if (!host.empty() && host[0]=='['){
+        const char* endipv6 = (const char*)memchr(host.c_str()+1,']', host.size()-1);
         if (endipv6){
             // TODO check out of range
             if (*(endipv6 + 1) == ':'){
@@ -151,10 +160,10 @@ bool Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
     }
 
     if(node.empty()){
-        service = (const char*)memchr(host.c_str(), ":", host.size());
+        service = (const char*)memchr(host.c_str(), ':', host.size());
         if (service){
-            if (!memchr(server+1, ':'. host.c_str() + host.size() - service - 1)){
-                node = host.substr(0, service - host..c_str());
+            if (!memchr(service+1, ':', host.c_str() + host.size() - service - 1)){
+                node = host.substr(0, service - host.c_str());
                 ++service;
             }
         }
@@ -175,11 +184,12 @@ bool Address::Lookup(std::vector<Address::ptr>& result, const std::string& host,
 
     while(next){
         result.push_back(Create(next->ai_addr, (socklen_t)next->ai_addrlen));
+        //SYLAR_LOG_INFO(g_logger)<< ((sockaddr_in*)next->ai_addr)->sin_addr.s_addr;
         next = next->ai_next;
     }
 
     freeaddrinfo(results);
-
+    return true;
 }
 
 int Address::getFamily() const{
@@ -207,6 +217,8 @@ Address::ptr Address::Create(const sockaddr* addr, socklen_t addrlen){
             result.reset(new UnknownAddress(*addr));
             break;
     }
+
+    return result;
 }
 
 bool Address::operator<(const Address& rhs) const{
@@ -229,14 +241,14 @@ bool Address::operator!=(const Address& rhs) const{
     return !(*this == rhs);
 }
 
-IPAddress::ptr IPAddress::Create(const char* address, uint32_t port = 0){
+IPAddress::ptr IPAddress::Create(const char* address, uint32_t port){
     addrinfo hints, *results;
     memset(&hints,0,sizeof(addrinfo));
 
-    hints.ai_flags = AI_NUMERICHOST;
+    //hints.ai_flags = AI_NUMERICHOST;
     hints.ai_family = AF_UNSPEC;
     
-    int error = getaddrinfo(address,NULL, &hints, &result);
+    int error = getaddrinfo(address,NULL, &hints, &results);
     if (error){
         SYLAR_LOG_ERROR(g_logger)<<"IPAddress::Create("<<address<<", "<<port<<") error="<<error
                                  <<" errno="<<errno<<" errstr="<<strerror(errno);
@@ -245,7 +257,7 @@ IPAddress::ptr IPAddress::Create(const char* address, uint32_t port = 0){
 
     try{
         IPAddress::ptr result =  std::dynamic_pointer_cast<IPAddress>
-        (Address::Create(results->ai_addr,(socklen_t)result->ai_addrlen));
+        (Address::Create(results->ai_addr,(socklen_t)results->ai_addrlen));
         if (result){
             result->setPort(port);
         }

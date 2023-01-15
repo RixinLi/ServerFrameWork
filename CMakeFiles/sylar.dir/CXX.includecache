@@ -365,6 +365,10 @@ log.h
 /home/lrx/ServerFrameWork/sylar/log.h
 sstream
 -
+netdb.h
+-
+ifaddrs.h
+-
 
 /home/lrx/ServerFrameWork/sylar/address.h
 memory
@@ -386,6 +390,10 @@ cstring
 sys/un.h
 -
 iostream
+-
+vector
+-
+map
 -
 
 /home/lrx/ServerFrameWork/sylar/config.cc

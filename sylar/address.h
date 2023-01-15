@@ -11,9 +11,12 @@
 #include <cstring>
 #include <sys/un.h>
 #include <iostream>
+#include <vector>
+#include <map>
 
 namespace sylar{
 
+class IPAddress;
 
 class Address{
 
@@ -28,7 +31,7 @@ public:
     static Address::ptr LookupAny(const std::string& host, 
         int family = AF_UNSPEC, int type = 0, int protocol = 0);
 
-    static IPAddress::ptr LookupAnyIPAddress(const std::string& host, 
+    static std::shared_ptr<IPAddress> LookupAnyIPAddress(const std::string& host, 
         int family = AF_UNSPEC, int type = 0, int protocol = 0);
 
     static bool GetInterfaceAddresses(std::multimap<std::string,std::pair<Address::ptr,uint32_t> >& result,
