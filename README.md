@@ -219,6 +219,7 @@ fd相关(fcntl, iocntl, ...)
 		  -------
 		  | socket |
 		  ---------
+		  connect, accept, read, write,close
 		     
 
 ## http协议开发
