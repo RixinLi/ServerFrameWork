@@ -1,6 +1,7 @@
 /home/lrx/ServerFrameWork/CMakeFiles/edit_cache.dir
 /home/lrx/ServerFrameWork/CMakeFiles/test.dir
 /home/lrx/ServerFrameWork/CMakeFiles/rebuild_cache.dir
+/home/lrx/ServerFrameWork/CMakeFiles/test_socket.dir
 /home/lrx/ServerFrameWork/CMakeFiles/test_thread.dir
 /home/lrx/ServerFrameWork/CMakeFiles/test_util.dir
 /home/lrx/ServerFrameWork/CMakeFiles/test_config.dir

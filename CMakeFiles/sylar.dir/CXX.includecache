@@ -515,6 +515,8 @@ fcntl.h
 -
 sys/ioctl.h
 -
+cstdint
+-
 
 /home/lrx/ServerFrameWork/sylar/iomanager.cc
 iomanager.h
@@ -621,6 +623,34 @@ util.h
 /home/lrx/ServerFrameWork/sylar/singleton.h
 memory
 -
+
+/home/lrx/ServerFrameWork/sylar/socket.cc
+socket.h
+/home/lrx/ServerFrameWork/sylar/socket.h
+fd_manager.h
+/home/lrx/ServerFrameWork/sylar/fd_manager.h
+log.h
+/home/lrx/ServerFrameWork/sylar/log.h
+macro.h
+/home/lrx/ServerFrameWork/sylar/macro.h
+hook.h
+/home/lrx/ServerFrameWork/sylar/hook.h
+sys/types.h
+-
+sys/socket.h
+-
+netinet/in.h
+-
+netinet/tcp.h
+-
+
+/home/lrx/ServerFrameWork/sylar/socket.h
+memory
+-
+address.h
+/home/lrx/ServerFrameWork/sylar/address.h
+noncopyable.h
+/home/lrx/ServerFrameWork/sylar/noncopyable.h
 
 /home/lrx/ServerFrameWork/sylar/thread.cc
 thread.h

@@ -45,6 +45,8 @@ fcntl.h
 -
 sys/ioctl.h
 -
+cstdint
+-
 
 sylar/iomanager.h
 scheduler.h

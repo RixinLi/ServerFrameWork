@@ -13,6 +13,28 @@ public:
     typedef std::shared_ptr<Socket> ptr;
     typedef std::weak_ptr<Socket> weak_ptr;
 
+    enum Type{
+        TCP = SOCK_STREAM,
+        UDP = SOCK_DGRAM
+    };
+
+    enum Family{
+        IPv4 = AF_INET,
+        IPv6 = AF_INET6,
+        UNIX = AF_UNIX
+    };
+
+    static Socket::ptr CreateTCP(sylar::Address::ptr address);
+    static Socket::ptr CreateUDP(sylar::Address::ptr address);
+
+    static Socket::ptr CreateTCPSocket();
+    static Socket::ptr CreateUDPSocket();
+
+    static Socket::ptr CreateTCPSocket6();
+    static Socket::ptr CreateUDPSocket6();
+
+    static Socket::ptr CreateUnixTCPSocket();
+    static Socket::ptr CreateUnixUDPSocket();
 
     Socket(int family, int type, int protocol = 0);
     ~Socket();
@@ -41,7 +63,7 @@ public:
     Socket::ptr accept();
 
     bool bind(const Address::ptr addr);
-    bool connect(const Address::ptr addr, uin64_t timeout_ms = -1);
+    bool connect(const Address::ptr addr, uint64_t timeout_ms = -1);
     bool listen(int backlog = SOMAXCONN);
     bool close();
 
