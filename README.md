@@ -221,6 +221,11 @@ fd相关(fcntl, iocntl, ...)
 		  ---------
 		  connect, accept, read, write,close
 		     
+		     
+## 序列化 byteArray
+
+write(int,float,int64,...)
+read(int,float,int64,...)
 
 ## http协议开发
 
