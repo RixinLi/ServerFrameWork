@@ -27,23 +27,22 @@ public:
     ~ByteArray();
 
     // write
-    void writeFint8  (const int8_t& value);
-    void writeFuint8 (const uint8_t& value);
-    void writeFint16 (const int16_t& value);
-    void writeFuint16(const uint16_t& value);
-    void writeFint32 (const int32_t& value);
-    void writeFuint32(const uint32_t& value);
-    void writeFint64 (const int64_t& value);
-    void writeFuint64(const uint64_t& value);
+    void writeFint8  (int8_t value);
+    void writeFuint8 (uint8_t value);
+    void writeFint16 (int16_t value);
+    void writeFuint16(uint16_t value);
+    void writeFint32 (int32_t value);
+    void writeFuint32(uint32_t value);
+    void writeFint64 (int64_t value);
+    void writeFuint64(uint64_t value);
 
-    void writeInt32  (const int32_t& value);
-    void writeUint32 (const uint32_t& value);
-    void writeInt64  (const int64_t& value);
-    void writeUint64 (const uint64_t& value);
+    void writeInt32  (int32_t value);
+    void writeUint32 (uint32_t value);
+    void writeInt64  (int64_t value);
+    void writeUint64 (uint64_t value);
+    void writeFloat  (float value);
+    void writeDouble (double value);
 
-
-    void writeFloat  (const float& value);
-    void writeDouble (const double& value);
     // length:int16, data
     void writeStringF16(const std::string& value);
     // length:int32, data

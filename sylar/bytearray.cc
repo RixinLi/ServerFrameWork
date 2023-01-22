@@ -49,35 +49,70 @@ void ByteArray::setIsLittleEndian(bool val){
 }
 
 
-void ByteArray::writeFint8  (const int8_t& value){
+void ByteArray::writeFint8  (int8_t value){
     write(&value,sizeof(value));
 }
 
-void ByteArray::writeFuint8 (const uint8_t& value){
+void ByteArray::writeFuint8 (uint8_t value){
     write(&value,sizeof(value));
 }
-void ByteArray::writeFint16 (const int16_t& value){
+void ByteArray::writeFint16 (int16_t value){
+    if(m_endian != SYLAR_BYTE_ORDER){
+        value = byteswap(value);
+    } 
     write(&value,sizeof(value));
 }
-void ByteArray::writeFuint16(const uint16_t& value){
+void ByteArray::writeFuint16(uint16_t value){
+    if(m_endian != SYLAR_BYTE_ORDER){
+        value = byteswap(value);
+    } 
     write(&value,sizeof(value));
 }
-void ByteArray::writeFint32 (const int32_t& value){
+void ByteArray::writeFint32 (int32_t value){
+    if(m_endian != SYLAR_BYTE_ORDER){
+        value = byteswap(value);
+    } 
     write(&value,sizeof(value));
 }
-void ByteArray::writeFuint32(const uint32_t& value){
+void ByteArray::writeFuint32(uint32_t value){
+    if(m_endian != SYLAR_BYTE_ORDER){
+        value = byteswap(value);
+    } 
     write(&value,sizeof(value));
 }
-void ByteArray::writeFint64 (const int64_t& value){
+void ByteArray::writeFint64 (int64_t value){
+    if(m_endian != SYLAR_BYTE_ORDER){
+        value = byteswap(value);
+    } 
     write(&value,sizeof(value));
 }
-void ByteArray::writeFuint64(const uint64_t& value);
-void ByteArray::writeInt32  (const int32_t& value);
-void ByteArray::writeUint32 (const uint32_t& value);
-void ByteArray::writeInt64  (const int64_t& value);
-void ByteArray::writeUint64 (const uint64_t& value);
-void ByteArray::writeFloat  (const float& value);
-void ByteArray::writeDouble (const double& value);
+
+void ByteArray::writeFuint64(uint64_t value){
+    if(m_endian != SYLAR_BYTE_ORDER){
+        value = byteswap(value);
+    } 
+    write(&value,sizeof(value));
+}
+
+
+void ByteArray::writeInt32  (int32_t value);
+
+void ByteArray::writeUint32 (uint32_t value){
+    uint8_t tmp[5];
+    uint8_t i = 0;
+    while(value >= 0x80){
+        tmp[i++] = (value & 0x7F) | 0x80;
+        value >>= 7;
+    }
+    tmp[i++] = val;
+    write(tmp,i);
+}
+
+void ByteArray::writeInt64  (int64_t value);
+void ByteArray::writeUint64 (uint64_t value);
+void ByteArray::writeFloat  (float value);
+void ByteArray::writeDouble (double value);
+
 void ByteArray::writeStringF16(const std::string& value);
 void ByteArray::writeStringF32(const std::string& value);
 void ByteArray::writeStringF64(const std::string& value);
